@@ -1,6 +1,7 @@
 package com.alprojects.hiber;
 
 import java.util.Arrays;
+
 import java.util.HashSet;
 
 import org.hibernate.HibernateException;
@@ -10,6 +11,8 @@ import org.hibernate.Transaction;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
+
+// https://github.com/zzantozz/testbed/tree/master/hibernate-with-xml-mappings
 
 public class TestPersist {
 	
@@ -40,7 +43,6 @@ public class TestPersist {
 	private void persistTest()
 	{
 		// buses
-		
 		TheBus bus1 = new TheBus();
 		bus1.setName("bus1");
 		TheBus bus2 = new TheBus();
@@ -85,16 +87,21 @@ public class TestPersist {
 		try
 		{
 			trans = session.beginTransaction();
+/*			
 			session.save(route1);
 			session.save(bus1);
 			session.save(bus2);
 			session.save(driver1);
 			session.save(driver2);
-			trans.commit();
-		}
-		catch (HibernateException e)
-		{
+*/
 			
+			session.persist(route1);
+			session.persist(bus1);
+			session.persist(bus2);
+			session.persist(driver1);
+			session.persist(driver2);
+			
+			trans.commit();
 		}
 		finally
 		{

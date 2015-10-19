@@ -1,12 +1,13 @@
 package com.alprojects.thrdbouncing;
 
 import java.util.ArrayList;
+
 import java.util.Random;
 
-import com.alprojects.guicetest.CopyModule;
-import com.alprojects.guicetest.ICopier;
+// import com.alprojects.guicetest.CopyModule;
+// import com.alprojects.guicetest.ICopier;
+//import com.alprojects.package2.p2Class;
 import com.alprojects.hiber.TestPersist;
-import com.alprojects.package2.p2Class;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 
@@ -76,6 +77,7 @@ public class App
 		}
 	}
 	
+	/*
 	private static void testGuice()
 	{
 		Injector ij = Guice.createInjector(new CopyModule());
@@ -84,6 +86,7 @@ public class App
 		svc.copy();
 		return;
 	}
+	*/
 	
 	private static void testHibernate()
 	{
