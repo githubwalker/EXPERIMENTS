@@ -1,10 +1,8 @@
 package com.alprojects.hiber;
 
 import java.util.Arrays;
-
 import java.util.HashSet;
 
-import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -13,6 +11,8 @@ import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
 
 // https://github.com/zzantozz/testbed/tree/master/hibernate-with-xml-mappings
+// http://www.journaldev.com/3793/hibernate-tutorial-with-example-projects
+// http://www.journaldev.com/2882/hibernate-tutorial-for-beginners-using-xml-annotations-and-property-configurations
 
 public class TestPersist {
 	
@@ -20,7 +20,7 @@ public class TestPersist {
 	
 	static SessionFactory createSessionFactory() {
 	    Configuration configuration = new Configuration();
-	    configuration.configure();
+	    configuration.configure( "hibernate.cfg.xml" );
 	    
 	    // ServiceRegistry serviceRegistry = new ServiceRegistryBuilder().applySettings(
 	    //        configuration.getProperties()). buildServiceRegistry();
@@ -44,9 +44,9 @@ public class TestPersist {
 	{
 		// buses
 		TheBus bus1 = new TheBus();
-		bus1.setName("bus1");
+		bus1.setNumber("bus1");
 		TheBus bus2 = new TheBus();
-		bus1.setName("bus2");
+		bus1.setNumber("bus2");
 		
 		// route1
 		TheRoute route1 = new TheRoute();

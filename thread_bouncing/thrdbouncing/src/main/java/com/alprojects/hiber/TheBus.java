@@ -1,7 +1,6 @@
 package com.alprojects.hiber;
 
 import java.util.HashSet;
-
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -14,25 +13,32 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 
 // https://en.wikibooks.org/wiki/Java_Persistence/ManyToOne
 // https://howtoprogramwithjava.com/hibernate-manytomany-unidirectional-bidirectional/
 
 @Entity
+@Table(name="the_bus")
 public class TheBus {
 	@Id
 	@Column(name="id")
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
-	@Column(name="name")
-	private String name;
-	
+	@Column(name="number")
+	private String number = "default";
+
+	@ManyToMany(cascade=CascadeType.ALL)
+	@JoinTable(
+			name="the_busdriver", 
+			joinColumns=@JoinColumn(name="bus_id"), 
+			inverseJoinColumns=@JoinColumn(name="driver_id"))
 	private Set<TheDriver> drivers = new HashSet<TheDriver>();
 	
-	@ManyToOne
+	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="route_id", nullable=false, updatable=false)
-	private String theRoute; // bus belongs to this route
+	private TheRoute theRoute; // bus belongs to this route
 
 	
 	public Long getId() {
@@ -42,30 +48,24 @@ public class TheBus {
 		this.id = id;
 	}
 	
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
-	
-	public String getTheRoute() {
+	public TheRoute getTheRoute() {
 		return theRoute;
 	}
-	public void setTheRoute(String theRoute) {
+	public void setTheRoute(TheRoute theRoute) {
 		this.theRoute = theRoute;
 	}
 	
-	@ManyToMany(cascade=CascadeType.ALL)
-	@JoinTable(
-			name="the_busdriver", 
-			joinColumns=@JoinColumn(name="bus_id"), 
-			inverseJoinColumns=@JoinColumn(name="driver_id"))
 	public Set<TheDriver> getDrivers() {
 		return drivers;
 	}
 	public void setDrivers(Set<TheDriver> drivers) {
 		this.drivers = drivers;
+	}
+	public String getNumber() {
+		return number;
+	}
+	public void setNumber(String number) {
+		this.number = number;
 	}
 }
 

@@ -103,13 +103,11 @@
             <version>${hib.tools.version}</version>
         </dependency>        
 
-		<!--        
-        <dependency>
-            <groupId>javassist</groupId>
-            <artifactId>javassist</artifactId>
-            <version>3.12.1.GA</version>
-        </dependency>
-        -->
+		<dependency>
+   			<groupId>javax.el</groupId>
+		   	<artifactId>javax.el-api</artifactId>
+		   	<version>LATEST</version>
+		</dependency>        
         
         <dependency>
             <groupId>mysql</groupId>

@@ -10,8 +10,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.Table;
 
 @Entity
+@Table(name="the_driver")
 public class TheDriver {
 	@Id
 	@Column(name="id")
@@ -20,6 +22,7 @@ public class TheDriver {
 	@Column(name="name")
 	private String name;
 	
+	@ManyToMany(cascade=CascadeType.ALL)
 	private Set<TheBus> buses = new HashSet<TheBus>();
 	
 	
@@ -37,7 +40,6 @@ public class TheDriver {
 		this.name = name;
 	}
 	
-	@ManyToMany(cascade=CascadeType.ALL, mappedBy="the_driver")
 	public Set<TheBus> getBuses() {
 		return buses;
 	}
