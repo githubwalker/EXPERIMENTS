@@ -1,6 +1,7 @@
 package com.alprojects.hiber;
 
 import java.util.Arrays;
+
 import java.util.HashSet;
 
 import org.hibernate.Session;
@@ -46,7 +47,7 @@ public class TestPersist {
 		TheBus bus1 = new TheBus();
 		bus1.setNumber("bus1");
 		TheBus bus2 = new TheBus();
-		bus1.setNumber("bus2");
+		bus2.setNumber("bus2");
 		
 		// route1
 		TheRoute route1 = new TheRoute();
@@ -58,25 +59,19 @@ public class TestPersist {
 		
 		TheDriver driver1 = new TheDriver();
 		driver1.setName("driver1");
+		driver1.setSurname("driver1_surname");
+		driver1.setAge(35);
 		// driver1.setBuses( new HashSet<TheBus>( Arrays.asList( bus1, bus2 ) ) );
 		
 		TheDriver driver2 = new TheDriver();
 		driver2.setName("driver2");
-		// driver2.setBuses( new HashSet<TheBus>( Arrays.asList( bus2 ) ) );
-
-
-		// link buses & drivers
+		driver2.setSurname("driver2_surname");
+		driver2.setAge(41);
 		
 		Utils.LinkBusAndDriver(bus1, driver1);
 		Utils.LinkBusAndDriver(bus2, driver1);
 		
 		Utils.LinkBusAndDriver(bus2, driver2);
-		
-		
-		// persisting
-		
-		// SessionFactory sf = new Hibernate
-		// SessionFactory = new Configuration().configure().buildSessionFactory(serviceRegistry);
 		
 		SessionFactory sf = this.getServiceFactory();
 
@@ -87,13 +82,6 @@ public class TestPersist {
 		try
 		{
 			trans = session.beginTransaction();
-/*			
-			session.save(route1);
-			session.save(bus1);
-			session.save(bus2);
-			session.save(driver1);
-			session.save(driver2);
-*/
 			
 			session.persist(route1);
 			session.persist(bus1);
@@ -106,11 +94,22 @@ public class TestPersist {
 		finally
 		{
 			session.close();
+			sf.close();
 		}
+	}
+	
+	private void loadTest()
+	{
+		BusPark bp = new BusPark();
+		bp.load();
+		bp.closeFactory();
+		bp.printPark();
+		return;
 	}
 
 	public void performTests()
 	{
-		persistTest();
+		loadTest();
+		// persistTest();
 	}
 }
