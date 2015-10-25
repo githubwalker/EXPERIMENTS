@@ -1,6 +1,7 @@
 package com.alprojects.hiber;
 
 import java.util.HashSet;
+
 import java.util.Iterator;
 import java.util.Set;
 
@@ -25,6 +26,9 @@ import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 // https://howtoprogramwithjava.com/category/hibernate-2/
 
 // http://blog.leodev.ru/java-dynamic-proxy/
+
+// best practices to pull out lazy collection
+// http://stackoverflow.com/questions/19928568/hibernate-best-practice-to-pull-all-lazy-collections
 
 public class BusPark extends HibernateDaoSupport {
 	private SessionFactory sessionFactory = null;
