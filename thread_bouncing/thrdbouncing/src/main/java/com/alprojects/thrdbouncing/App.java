@@ -1,16 +1,22 @@
 package com.alprojects.thrdbouncing;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
-
 import java.util.Random;
+
+
+
+
+import org.dom4j.DocumentException;
+
 
 // import com.alprojects.guicetest.CopyModule;
 // import com.alprojects.guicetest.ICopier;
 //import com.alprojects.package2.p2Class;
 import com.alprojects.hiber.TestPersist;
+import com.alprojects.xml_tests.pomxml_parser;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
-
 
 
 /**
@@ -94,9 +100,26 @@ public class App
 		tp.performTests();
 	}
 	
+	private static void testXML()
+	{
+		pomxml_parser xmlparser = new pomxml_parser();
+		try {
+			xmlparser.parseFile("");
+		} catch (DocumentException e) {
+			// TODO Auto-generated catch block
+			System.err.println("Something wrong happened during parsing");
+			e.printStackTrace(System.err);
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			System.err.println("Something wrong happened during parsing");
+			e.printStackTrace(System.err);
+		}
+	}
+	
     public static void main( String[] args ) throws InterruptedException {
     
-    	testHibernate();
+    	testXML();
+    	// testHibernate();
     	return;
     	
     	/*
