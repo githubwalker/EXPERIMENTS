@@ -30,7 +30,13 @@ import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 // best practices to pull out lazy collection
 // http://stackoverflow.com/questions/19928568/hibernate-best-practice-to-pull-all-lazy-collections
 
-public class BusPark extends HibernateDaoSupport {
+// DAO
+// http://www.studytrails.com/frameworks/spring/spring-hibernate-jpa.jsp
+
+public class BusPark 
+// extends HibernateDaoSupport 
+{
+	private Session session = null;
 	private SessionFactory sessionFactory = null;
 	private Set<TheRoute> routes = new HashSet<TheRoute>();
 	// private HibernateTemplate hibernateTemplate; 
@@ -52,6 +58,12 @@ public class BusPark extends HibernateDaoSupport {
 			sessionFactory = createSessionFactory();
 
 		return sessionFactory;
+	}
+	
+	public Session getSession() {
+		if ( session == null )
+			session = this.getServiceFactory().openSession();
+		return session;
 	}
 	
 
@@ -80,31 +92,38 @@ public class BusPark extends HibernateDaoSupport {
 	}
 	
 	public void persist() {
-		Session session = this.getServiceFactory().openSession();
+		// Session session = this.getServiceFactory().openSession();
+		Session session = getSession();
 
 		Transaction trans = null;
 
 		try {
 			trans = session.beginTransaction();
-
+			
 			for (TheRoute rt : routes) {
-				session.persist(rt);
+				// session.persist(rt);
+				Utils.persistOrMerge(session, rt);
+				
 				for (TheBus bs : rt.getBuses()) {
-					session.persist(bs);
+					// session.persist(bs);
+					Utils.persistOrMerge( session, bs );
 					for (TheDriver dr : bs.getDrivers()) {
-						session.persist(dr);
+						// session.persist(dr);
+						Utils.persistOrMerge( session, dr );
 					}
 				}
 			}
 
 			trans.commit();
 		} finally {
-			session.close();
+			// session.close();
+			session.flush();
 		}
 	}
 
 	public void load() {
-		Session session = this.getServiceFactory().openSession();
+		// Session session = this.getServiceFactory().openSession();
+		Session session = this.getSession();
 
 		try {
 
@@ -125,12 +144,17 @@ public class BusPark extends HibernateDaoSupport {
 			}
 		} finally {
 			// session.clear();
-			session.close();
-			closeFactory();
+			// session.close();
+			// closeFactory();
 		}
 	}
 
 	public void closeFactory() {
+		if (this.session != null) {
+			session.close();
+			session = null;
+		}
+		
 		if (this.sessionFactory != null) {
 			this.sessionFactory.close();
 			this.sessionFactory = null;
@@ -147,7 +171,8 @@ public class BusPark extends HibernateDaoSupport {
 	
 	public void loadWholePark() {
 		// HibernateTemplate ht = this.getHibernateTemplate();
-		Session session = this.getServiceFactory().openSession();
+		// Session session = this.getServiceFactory().openSession();
+		Session session = this.getSession();
 
 		try {
 			Iterator it = session.createQuery("from TheRoute").iterate();
@@ -164,9 +189,24 @@ public class BusPark extends HibernateDaoSupport {
 				this.routes.add(rt);
 			}
 		} finally {
-			session.clear();
+			session.flush();
 		}
 	}
-	
+
+	public boolean deleteRoute(TheRoute route) {
+		Session session = this.getSession();
+		if ( routes.contains(route) )
+		{
+			for (TheBus bs : route.getBuses()) {
+				for (TheDriver dr : bs.getDrivers()) {
+					session.delete(dr);
+				}
+				session.delete(bs);
+			}
+			session.delete(route);
+		}
+		
+		return this.routes.remove(route);
+	}
 }
 

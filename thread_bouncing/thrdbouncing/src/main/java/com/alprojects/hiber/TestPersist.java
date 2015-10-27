@@ -1,8 +1,9 @@
 package com.alprojects.hiber;
 
 import java.util.Arrays;
-
 import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Set;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -98,8 +99,81 @@ public class TestPersist {
 		}
 	}
 	
-	private void loadTest()
+	private void testUpdate() {
+		BusPark bp = new BusPark();
+		bp.load();
+		Set<TheRoute> routes = bp.getRoutes();
+		boolean bChanged = false;
+
+		if (routes.size() > 0) {
+			Iterator<TheRoute> it = routes.iterator();
+			if (it.hasNext()) {
+				TheRoute rt1 = it.next();
+				rt1.setName(rt1.getName() + "_modified");
+				bChanged = true;
+			}
+		}
+
+		if (bChanged) {
+			bp.persist();
+		}
+
+		return;
+	}
+	
+	private void testDelete2ndRoute() {
+		BusPark bp = new BusPark();
+		bp.load();
+		Set<TheRoute> routes = bp.getRoutes();
+
+		boolean bChanged = false;
+
+		if (routes.size() > 1) {
+			Iterator<TheRoute> it = routes.iterator();
+			if (it.hasNext())
+				it.next();
+
+			if (it.hasNext()) {
+				// it.next();
+				TheRoute rt2beremoved = it.next();
+				bp.deleteRoute(rt2beremoved);
+				bChanged = true;
+			}
+		}
+
+		if (bChanged) {
+			bp.persist();
+		}
+	}
+	
+	private void testDelete1stRoute()
 	{
+		BusPark bp = new BusPark();
+		bp.load();
+		Set<TheRoute> routes = bp.getRoutes();
+		
+		bp.printPark();
+
+		boolean bChanged = false;
+
+		if (routes.size() > 1) {
+			Iterator<TheRoute> it = routes.iterator();
+			if (it.hasNext()) {
+				TheRoute rt2beremoved = it.next();
+				bp.deleteRoute(rt2beremoved);
+				bChanged = true;
+			}
+		}
+		
+		bp.printPark();
+
+		if (bChanged) {
+			bp.persist();
+			bp.closeFactory();
+		}
+	}
+	
+	private void loadTest() {
 		BusPark bp = new BusPark();
 		bp.load();
 		bp.closeFactory();
@@ -107,9 +181,13 @@ public class TestPersist {
 		return;
 	}
 
-	public void performTests()
-	{
-		loadTest();
+	public void performTests() {
+		testDelete1stRoute();
+		// testDelete2ndRoute();
+		// testUpdate();
+		// loadTest();
 		// persistTest();
 	}
 }
+
+

@@ -15,28 +15,46 @@ import org.dom4j.io.SAXReader;
 
 public class pomxml_parser {
 	
+	private void print_recursively( int level, Element el )
+	{
+		StringBuffer sb = new StringBuffer();
+		for ( int i = 0; i < level; i ++ )
+		{
+			sb.append("--");
+		}
+		String strPrefix = sb.toString();
+			
+		System.out.println( strPrefix + el.getName() );
+
+		List lstItems = el.elements();
+		for ( Object item : lstItems )
+		{
+			Element child_el = (Element)item;
+			print_recursively( level + 1, child_el );
+		}
+				
+	}
+	
 	private void parseHelper( InputStream is ) throws DocumentException
 	{
 		SAXReader reader = new SAXReader();
 		Document doc = reader.read(is);
 		
 		Element rootel = doc.getRootElement();
-		List lst = rootel.selectNodes( "//project/dependencies/dependency" );
+		
+		print_recursively( 0, rootel );
+		
+		// List lst = rootel.selectNodes( "//project/dependencies/dependency" );
+		List lst = doc.selectNodes( "/hibernate-configuration/session-factory/property" );
+		
 		
 		for ( Object obj : lst )
 		{
 			Element el = (Element)obj;
 			if ( el != null )
 			{
-				// String strName = el.getName();
-				
-				System.out.println( "--------------------" );
-				
-				for ( Iterator it = el.elementIterator(); it.hasNext();  )
-				{
-					Element child_el = (Element)it.next();
-					System.out.println(child_el.getText());
-				}
+				String strName = el.getName();
+				System.out.println( el.getName() + " " + el.getText()  );
 			}
 		}
 		
@@ -54,8 +72,10 @@ public class pomxml_parser {
 	
 	public void parseFile( String filenameName ) throws DocumentException, FileNotFoundException
 	{
-		filenameName = "C:\\PROJECTS\\JAVA\\thread_bouncing\\thrdbouncing\\pom.xml";
-		filenameName = "C:\\PROJECTS\\111\\pom.xml";
+		// filenameName = "C:\\PROJECTS\\JAVA\\thread_bouncing\\thrdbouncing\\pom.xml";
+		filenameName = "C:\\PROJECTS\\JAVA\\thread_bouncing\\thrdbouncing\\src\\main\\resources\\hibernate.cfg.xml";
+					   // "C:\\PROJECTS\\JAVA\\thread_bouncing\\thrdbouncing\\pom.xml"
+		// filenameName = "C:\\PROJECTS\\111\\pom.xml";
 		FileInputStream fis = new FileInputStream(filenameName);
 		parseHelper( fis );
 	}

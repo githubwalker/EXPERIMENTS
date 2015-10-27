@@ -118,8 +118,8 @@ public class App
 	
     public static void main( String[] args ) throws InterruptedException {
     
-    	testXML();
-    	// testHibernate();
+    	// testXML();
+    	testHibernate();
     	return;
     	
     	/*

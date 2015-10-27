@@ -25,7 +25,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="the_bus")
-public class TheBus {
+public class TheBus implements IPersistObject {
 	@Id
 	@Column(name="bus_id")
 	@GeneratedValue(strategy=GenerationType.AUTO)
@@ -34,14 +34,14 @@ public class TheBus {
 	@Column(name="number")
 	private String number = "default";
 
-	@ManyToMany(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
+	@ManyToMany(cascade={CascadeType.ALL},fetch=FetchType.EAGER)
 	@JoinTable(
 			name="the_busdriver", 
 			joinColumns=@JoinColumn(name="bus_id"), 
 			inverseJoinColumns=@JoinColumn(name="driver_id"))
 	private Set<TheDriver> drivers = new HashSet<TheDriver>();
 	
-	@ManyToOne(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
+	@ManyToOne(cascade={CascadeType.ALL},fetch=FetchType.EAGER)
 	@JoinColumn(name="route_id")
 	private TheRoute theRoute; // bus belongs to this route
 

@@ -5,6 +5,7 @@ import java.util.Set;
 
 
 
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -17,7 +18,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="the_route")
-public class TheRoute {
+public class TheRoute implements IPersistObject {
 	@Id
 	@Column(name="route_id")
 	@GeneratedValue(strategy=GenerationType.AUTO)
@@ -29,12 +30,11 @@ public class TheRoute {
 	@Column(name="number")
 	private Integer number = 0;
 
-	@OneToMany(mappedBy="theRoute",cascade=CascadeType.ALL,fetch=FetchType.EAGER)
+	@OneToMany(mappedBy="theRoute",cascade={CascadeType.ALL},fetch=FetchType.EAGER,orphanRemoval=true)
 	private Set<TheBus> buses;
 	
 	// private TheBus bus;
 	
-
 	public Long getId() {
 		return id;
 	}

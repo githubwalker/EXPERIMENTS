@@ -15,7 +15,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="the_driver")
-public class TheDriver {
+public class TheDriver implements IPersistObject {
 	@Id
 	@Column(name="driver_id")
 	@GeneratedValue(strategy=GenerationType.AUTO)
@@ -27,7 +27,7 @@ public class TheDriver {
 	@Column(name="age")
 	private Integer age;
 	
-	@ManyToMany(mappedBy="drivers",cascade=CascadeType.ALL,fetch=FetchType.EAGER)
+	@ManyToMany(mappedBy="drivers",cascade={CascadeType.ALL},fetch=FetchType.EAGER)
 /*	
 	@JoinTable(
 			name="the_busdriver", 
