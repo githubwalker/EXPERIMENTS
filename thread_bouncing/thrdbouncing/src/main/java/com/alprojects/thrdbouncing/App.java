@@ -119,7 +119,8 @@ public class App
     public static void main( String[] args ) throws InterruptedException {
     
     	// testXML();
-    	testHibernate();
+    	// testHibernate();
+    	com.alprojects.Algos.Algo.performTests();
     	return;
     	
     	/*
