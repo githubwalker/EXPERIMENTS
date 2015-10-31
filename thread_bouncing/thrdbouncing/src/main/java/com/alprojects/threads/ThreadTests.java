@@ -74,5 +74,42 @@ public class ThreadTests {
     	thrds.add( new BounceThrd( "thrd3", bm, 1234 ) );
     	thrds.add( new BounceThrd( "thrd4", bm, 3333 ) );
     	thrds.add( new BounceThrd( "thrd5", bm, 10111 ) );
+
+    	
+    	System.out.println( "Starting " + Integer.toString(thrds.size()) + " threads"  );
+    	
+    	for ( Thread th : thrds )
+    		th.start();
+    	
+    	final int seconds2wait = 20; // 20 sec
+    	
+    	System.out.println( "Waiting " + Integer.toString(seconds2wait) + " Seconds" );
+    	
+    	try {
+			Thread.sleep( 20 * 1000 );
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+    	System.out.println( "Cancelling all " + Integer.toString(thrds.size()) + " threads" );
+    	
+    	for ( Thread th : thrds )
+    		th.interrupt();
+    	
+    	System.out.println( "Interrupt signal was sent to all threads. Waiting for threads completion" );
+
+    	for ( Thread th : thrds )
+    	{
+			try {
+				th.join();
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+    	}
+    	
+    	System.out.println( "Completed. Leaving" );
 	}
 }
+
