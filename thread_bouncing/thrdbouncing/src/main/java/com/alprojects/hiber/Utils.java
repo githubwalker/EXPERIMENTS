@@ -14,7 +14,8 @@ public class Utils {
 	{
 		return obj.getId() != null;
 	}
-	
+
+	/*
 	public static void persistOrMerge( Session ses, IPersistObject obj )
 	{
 		if ( obj.getId() != null )
@@ -26,6 +27,15 @@ public class Utils {
 			ses.persist(obj);
 		}
 	}
+	*/
+	
+	public static <T> T mrg( Session ses, T obj )
+	{
+		@SuppressWarnings("unchecked")
+		T rv = (T)(ses.merge(obj));
+		return rv;
+	}
+
 }
 
 

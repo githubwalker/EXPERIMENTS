@@ -1,11 +1,6 @@
 package com.alprojects.thrdbouncing;
 
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.Random;
-
-
-
 
 import org.dom4j.DocumentException;
 
@@ -13,10 +8,11 @@ import org.dom4j.DocumentException;
 // import com.alprojects.guicetest.CopyModule;
 // import com.alprojects.guicetest.ICopier;
 //import com.alprojects.package2.p2Class;
+import com.alprojects.Algos.Algo;
 import com.alprojects.hiber.TestPersist;
+import com.alprojects.inheritance.AccessClass;
+import com.alprojects.threads.ThreadTests;
 import com.alprojects.xml_tests.pomxml_parser;
-import com.google.inject.Guice;
-import com.google.inject.Injector;
 
 
 /**
@@ -25,74 +21,7 @@ import com.google.inject.Injector;
  */
 public class App 
 {
-	public static class BounceManager
-	{
-		Object _mutex = new Object();
-		Integer _nPrevValue = null;
-		
-		public void writeNumber2console( String threadName, int nNumber ) throws InterruptedException
-		{
-			synchronized(_mutex)
-			{
-				while (_nPrevValue != null && _nPrevValue == nNumber)
-					_mutex.wait();
-				
-				System.out.println( threadName + ": " + new Integer(nNumber).toString() );
-				_nPrevValue = nNumber;
-				
-				_mutex.notify();
-			}			
-		}
-	}
 	
-	public static class BounceThrd extends Thread
-	{
-		private BounceManager _bm;
-		private String _thrdName;
-		private int _sleepTime;
-		
-		BounceThrd( String thrdName, BounceManager bounceManager, int sleepTime )
-		{
-			_thrdName = thrdName;
-			_bm = bounceManager;
-			_sleepTime = sleepTime;
-		}
-		
-		public void run() {
-			while ( !isInterrupted() )
-			{
-				try {
-					int nNumber = new Random().nextInt(2);
-					nNumber = nNumber == 0 ? 0 : 1; // normalize
-						_bm.writeNumber2console(_thrdName, nNumber);
-						nNumber = 1 - nNumber;
-						sleep(_sleepTime);
-				} 
-				catch (InterruptedException e) {
-					System.out.println( "Thread " + _thrdName + " exiting ..." );
-					Thread.currentThread().interrupt();
-				}
-			}
-			
-			if ( isInterrupted() )
-			{
-				System.out.println( "Thread " + _thrdName + " was interrupted" );
-			}
-			
-			System.out.println( "Thread " + _thrdName + " was interrupted - leaving" );
-		}
-	}
-	
-	/*
-	private static void testGuice()
-	{
-		Injector ij = Guice.createInjector(new CopyModule());
-		ICopier svc = ij.getInstance(ICopier.class);
-		
-		svc.copy();
-		return;
-	}
-	*/
 	
 	private static void testHibernate()
 	{
@@ -116,11 +45,123 @@ public class App
 		}
 	}
 	
+	private static short testDoudle() {
+		boolean b = true;
+		short c = (b) ? (short)1 : (short)0;
+		double a = 1.234567;
+		short k = (short) a;
+		return k;
+	}
+	
+	static private void testConvert()
+	{
+		short a = 5;
+		long b = -a;
+		float diameters[] = { 1.2f, 3.5f, 4.5f };
+		float f = 1.5f;
+		long lll = 1_000_000_000;
+		
+		int myInts[][] = { {1,2,3}, {4,5}, {6,7,8,9}  };
+		
+		int k = myInts[2][3];
+		
+		String str = "123";
+		// str.com
+		
+		System.gc();
+		return;
+	}
+	
+	private static class Person
+	{
+		byte[] thearray = new byte[1024];
+		
+		@Override
+		protected void finalize() throws Throwable
+		{
+			System.out.println("GC was called");
+			super.finalize();			
+		}
+	}
+	
+	private static void testPerson()
+	{
+		if (true)
+		{
+			Person ps = new Person();
+		}
+		
+		System.gc();
+		
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return;
+	}
+	
+	private static void changeRefTest_helper( Person ps1 )
+	{
+		// Integer.valueOf("345");
+		ps1 = new Person();
+		return;
+	}
+	
+	private static void changeRefTest()
+	{
+		Person ps = new Person();
+		changeRefTest_helper( ps );
+		
+		int k = 1;
+		k <<= 1;
+		
+		k >>= 1;
+		
+		k = 2;
+		k = ~k;
+		return;
+	}
+	
+	public void testOver(String s)
+	{}
+	
+	public String testOver(String s,int k)
+	{
+		return s;
+	}
+	
+	private static class testAccess extends AccessClass 
+	{
+		String str1;
+		
+		public testAccess()
+		{
+			str1 = super.str;
+		}
+	} 
+	
+	public void testAcess()
+	{
+		AccessClass ac = new AccessClass();
+	}
+	
+	// algorighms
+	// http://www.youtube.com/watch?v=f5OD9CKrZEw
+	
     public static void main( String[] args ) throws InterruptedException {
     
+    	// changeRefTest();
+    	// testPerson();
+    	// testConvert();
+    	// testDoudle();
     	// testXML();
+    	// GuiceTest.testGuice();
     	// testHibernate();
-    	com.alprojects.Algos.Algo.performTests();
+    	// Algo.performTests();
+    	ThreadTests.testThreads();
     	return;
     	
     	/*

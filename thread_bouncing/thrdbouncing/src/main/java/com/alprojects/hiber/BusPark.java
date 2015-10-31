@@ -102,16 +102,20 @@ public class BusPark
 			
 			for (TheRoute rt : routes) {
 				// session.persist(rt);
-				Utils.persistOrMerge(session, rt);
-				
+				// Utils.persistOrMerge(session, rt);
+				rt = Utils.mrg(session, rt);
+				/*
 				for (TheBus bs : rt.getBuses()) {
 					// session.persist(bs);
-					Utils.persistOrMerge( session, bs );
+					// Utils.persistOrMerge( session, bs );
+					Utils.mrg(session, bs);
 					for (TheDriver dr : bs.getDrivers()) {
 						// session.persist(dr);
-						Utils.persistOrMerge( session, dr );
+						// Utils.persistOrMerge( session, dr );
+						Utils.mrg(session, dr);
 					}
 				}
+				*/
 			}
 
 			trans.commit();
@@ -128,7 +132,7 @@ public class BusPark
 		try {
 
 			Iterator it = session.createQuery("from TheRoute").iterate();
-
+			
 			this.routes = new HashSet<TheRoute>();
 
 			while (it.hasNext()) {

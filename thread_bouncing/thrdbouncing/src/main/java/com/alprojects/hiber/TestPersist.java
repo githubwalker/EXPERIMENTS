@@ -5,9 +5,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
-import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
@@ -74,6 +72,15 @@ public class TestPersist {
 		
 		Utils.LinkBusAndDriver(bus2, driver2);
 		
+		BusPark bp = new BusPark();
+		
+		HashSet<TheRoute> ts = new HashSet<TheRoute>();
+		ts.add(route1);
+		
+		bp.setRoutes( ts );
+		bp.persist();
+		
+/*		
 		SessionFactory sf = this.getServiceFactory();
 
 		Session session = sf.openSession();
@@ -97,6 +104,7 @@ public class TestPersist {
 			session.close();
 			sf.close();
 		}
+*/		
 	}
 	
 	private void testUpdate() {
@@ -156,7 +164,7 @@ public class TestPersist {
 
 		boolean bChanged = false;
 
-		if (routes.size() > 1) {
+		if (routes.size() > 0) {
 			Iterator<TheRoute> it = routes.iterator();
 			if (it.hasNext()) {
 				TheRoute rt2beremoved = it.next();
@@ -169,8 +177,8 @@ public class TestPersist {
 
 		if (bChanged) {
 			bp.persist();
-			bp.closeFactory();
 		}
+		bp.closeFactory();
 	}
 	
 	private void loadTest() {

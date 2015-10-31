@@ -3,7 +3,6 @@ package com.alprojects.xml_tests;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
-import java.util.Iterator;
 import java.util.List;
 
 import org.dom4j.Document;
