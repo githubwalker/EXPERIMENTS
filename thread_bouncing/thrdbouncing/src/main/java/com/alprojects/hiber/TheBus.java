@@ -16,6 +16,11 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+// DOUBLE DIRECTION
+// HIBERNATE_STUDY
+// http://www.spring-source.ru/docs_simple.php?type=manual&theme=docs_simple&docs_simple=chap04_p03
+//http://javatalks.ru/topics/30488
+// http://stackoverflow.com/questions/14111607/manytomanymappedby-foo
 
 // https://en.wikibooks.org/wiki/Java_Persistence/ManyToOne
 // https://howtoprogramwithjava.com/hibernate-manytomany-unidirectional-bidirectional/
@@ -34,7 +39,8 @@ public class TheBus implements IPersistObject {
 	@Column(name="number")
 	private String number = "default";
 
-	@ManyToMany(cascade={CascadeType.ALL},fetch=FetchType.EAGER)
+	@ManyToMany(cascade={CascadeType.ALL},			
+			fetch=FetchType.EAGER)
 	@JoinTable(
 			name="the_busdriver", 
 			joinColumns=@JoinColumn(name="bus_id"), 

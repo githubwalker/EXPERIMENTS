@@ -41,7 +41,7 @@ public class TestPersist {
 		return sessionFactory;
 	}
 	
-	private void persistTest()
+	private static void persistTest()
 	{
 		// buses
 		TheBus bus1 = new TheBus();
@@ -108,7 +108,7 @@ public class TestPersist {
 */		
 	}
 	
-	private void testUpdate() {
+	private static void testUpdate() {
 		BusPark bp = new BusPark();
 		bp.load();
 		Set<TheRoute> routes = bp.getRoutes();
@@ -130,7 +130,7 @@ public class TestPersist {
 		return;
 	}
 	
-	private void testDelete2ndRoute() {
+	private static void testDelete2ndRoute() {
 		BusPark bp = new BusPark();
 		bp.load();
 		Set<TheRoute> routes = bp.getRoutes();
@@ -155,7 +155,7 @@ public class TestPersist {
 		}
 	}
 	
-	private void testDelete1stRoute()
+	private static void testDelete1stRoute()
 	{
 		BusPark bp = new BusPark();
 		bp.load();
@@ -179,18 +179,18 @@ public class TestPersist {
 		if (bChanged) {
 			bp.persist();
 		}
-		bp.closeFactory();
+		// bp.closeFactory();
 	}
 	
-	private void loadTest() {
+	private static void loadTest() {
 		BusPark bp = new BusPark();
 		bp.load();
-		bp.closeFactory();
+		// bp.closeFactory();
 		bp.printPark();
 		return;
 	}
 
-	public void performTests() {
+	public static void performTests() {
 		testDelete1stRoute();
 		// testDelete2ndRoute();
 		// testUpdate();

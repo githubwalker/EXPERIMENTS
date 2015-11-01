@@ -8,12 +8,14 @@ import org.dom4j.DocumentException;
 
 
 
+
 // import com.alprojects.guicetest.CopyModule;
 // import com.alprojects.guicetest.ICopier;
 //import com.alprojects.package2.p2Class;
 import com.alprojects.Algos.Algo;
 import com.alprojects.collections.testCollections;
 import com.alprojects.guicetest.GuiceTest;
+import com.alprojects.hiber.SessionFactoryHolder;
 import com.alprojects.hiber.TestPersist;
 import com.alprojects.inheritance.AccessClass;
 import com.alprojects.reflection.TestReflection;
@@ -158,74 +160,18 @@ public class App
 	// http://www.youtube.com/watch?v=f5OD9CKrZEw
 	
     public static void main( String[] args ) throws InterruptedException {
-    
-    	// changeRefTest();
-    	// testPerson();
-    	// testConvert();
-    	// testDoudle();
-    	// testXML();
-    	// GuiceTest.testGuice();
-    	// testHibernate();
-    	// Algo.performTests();
-    	// ThreadTests.testThreads();
-    	// com.alprojects.Algos.Algo.performTests();
-    	// GuiceTest.performTests();
-    	// TestReflection.testReflection();
-    	testCollections.MytestCollections();
-    	return;
-    	
-    	/*
-    	testGuice();
-    	
-    	System.out.println( "Before cnfClass cn = new cnfClass();" );
-    	
-    	cnfClass cn = new cnfClass();
-    	
-    	System.out.println( "After cnfClass cn = new cnfClass();" );
-    	
-    	// AnotherClass ak = new AnotherClass();
-    	// AnotherClass.staticMethod();
-    	p2Class.staticMethod();
-    	
-    	finStatClass fsc = new finStatClass();
-    	
-    	// com.google.inject.BindingAnnotation
-    	
-    	
-    	BounceManager bm = new BounceManager();
-    	
-    	ArrayList<Thread> thrds = new ArrayList<Thread>();
-    	thrds.add( new BounceThrd( "thrd1", bm, 500 ) );
-    	thrds.add( new BounceThrd( "thrd2", bm, 8888 ) );
-    	thrds.add( new BounceThrd( "thrd3", bm, 1234 ) );
-    	thrds.add( new BounceThrd( "thrd4", bm, 3333 ) );
-    	thrds.add( new BounceThrd( "thrd5", bm, 10111 ) );
-    	
-    	System.out.println( "Before Thread.start" );
-    	
-    	for ( Thread th : thrds )
-    		th.start();
-    		
-    	System.out.println( "Before Thread.sleep(20 * 1000)" );
 
-    	Thread.sleep(20 * 1000);
-    	
-    	System.out.println( "After Thread.sleep(20 * 1000)" );
-
-    	System.out.println( "Before massive interrupt" );
-    	
-    	for ( Thread th : thrds )
+    	try
     	{
-    		th.interrupt();
+    		TestPersist.performTests();
+	    	// testCollections.MytestCollections();
     	}
-    		
-    	System.out.println( "Before massive join" );
+    	finally
+    	{
+	    	SessionFactoryHolder.closeFactory();
+    	}
     	
-    	for ( Thread th : thrds )
-    		th.join();
-    		
-    	System.out.println( "leaving" );
-    	*/
+    	return;
     }
 }
 

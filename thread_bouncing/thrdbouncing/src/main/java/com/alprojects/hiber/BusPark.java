@@ -39,11 +39,12 @@ import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 public class BusPark 
 // extends HibernateDaoSupport 
 {
-	private Session session = null;
-	private SessionFactory sessionFactory = null;
+	// private Session session = null;
+	// private SessionFactory sessionFactory = null;
 	private Set<TheRoute> routes = new HashSet<TheRoute>();
 	// private HibernateTemplate hibernateTemplate; 
 	
+	/*
 	static SessionFactory createSessionFactory() {
 	    Configuration configuration = new Configuration();
 	    configuration.configure( "hibernate.cfg.xml" );
@@ -68,6 +69,7 @@ public class BusPark
 			session = this.getServiceFactory().openSession();
 		return session;
 	}
+	*/
 	
 
 	public Set<TheRoute> getRoutes() {
@@ -96,7 +98,8 @@ public class BusPark
 	
 	public void persist() {
 		// Session session = this.getServiceFactory().openSession();
-		Session session = getSession();
+		// Session session = getSession();
+		Session session = SessionFactoryHolder.getFactory().openSession();
 
 		Transaction trans = null;
 
@@ -123,14 +126,15 @@ public class BusPark
 
 			trans.commit();
 		} finally {
-			// session.close();
 			session.flush();
+			session.close();
 		}
 	}
 
 	public void load() {
 		// Session session = this.getServiceFactory().openSession();
-		Session session = this.getSession();
+		// Session session = this.getSession();
+		Session session = SessionFactoryHolder.getFactory().openSession();
 
 		try {
 
@@ -153,9 +157,11 @@ public class BusPark
 			// session.clear();
 			// session.close();
 			// closeFactory();
+			session.close();
 		}
 	}
 
+	/*
 	public void closeFactory() {
 		if (this.session != null) {
 			session.close();
@@ -167,6 +173,7 @@ public class BusPark
 			this.sessionFactory = null;
 		}
 	}
+	*/
 
 	/*
 	@Autowired
@@ -179,7 +186,8 @@ public class BusPark
 	public void loadWholePark() {
 		// HibernateTemplate ht = this.getHibernateTemplate();
 		// Session session = this.getServiceFactory().openSession();
-		Session session = this.getSession();
+		// Session session = this.getSession();
+		Session session = SessionFactoryHolder.getFactory().openSession();
 
 		try {
 			Iterator it = session.createQuery("from TheRoute").iterate();
@@ -197,11 +205,15 @@ public class BusPark
 			}
 		} finally {
 			session.flush();
+			session.close();
 		}
 	}
 
 	public boolean deleteRoute(TheRoute route) {
-		Session session = this.getSession();
+		// Session session = this.getSession();
+		Session session = SessionFactoryHolder.getFactory().openSession();
+		
+		/*
 		if ( routes.contains(route) )
 		{
 			for (TheBus bs : route.getBuses()) {
@@ -212,8 +224,24 @@ public class BusPark
 			}
 			session.delete(route);
 		}
+		*/
 		
-		return this.routes.remove(route);
+		Transaction trans = null;
+		boolean bOk = false; 
+
+		try
+		{
+			trans = session.beginTransaction();
+			session.delete(route);
+			trans.commit();
+			bOk = this.routes.remove(route);
+		} 
+		finally 
+		{
+			session.close();
+		}
+		
+		return bOk;
 	}
 }
 
