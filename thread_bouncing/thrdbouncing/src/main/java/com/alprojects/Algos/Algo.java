@@ -298,7 +298,6 @@ public class Algo {
 			try
 			{
 				// throw new IllegalStateException();
-				Object obj = new Object();
 				throw new Exception();
 			}
 			finally
@@ -320,13 +319,86 @@ public class Algo {
 			System.out.println("3");
 		}
 	}
+	
+	public static <T extends Comparable<T>> void mergeSortedArrays(
+			List<T> a1,
+			List<T> a2,
+			List<T> a3
+			) {
+
+		Iterator<T> it1 = a1.iterator();
+		Iterator<T> it2 = a2.iterator();
+		
+		T current1 = it1.hasNext() ? it1.next() : null;
+		T current2 = it2.hasNext() ? it2.next() : null;
+		
+		while ( current1 != null && current2 != null )
+		{
+			if ( current1.compareTo(current2) < 0 )
+			{
+				a3.add(current1);
+				current1 = it1.hasNext() ? it1.next() : null; 
+			}
+			else
+			{
+				a3.add(current2);
+				current2 = it2.hasNext() ? it2.next() : null; 
+			}
+		}
+		
+		if ( current1 != null )
+			a3.add(current1);
+		
+		while ( it1.hasNext() )
+			a3.add(it1.next());
+		
+		if ( current2 != null )
+			a3.add(current2);
+		
+		while ( it2.hasNext() )
+			a3.add(it2.next());
+	}
+	
+	private static void mergeArrayLists_test()
+	{
+		ArrayList<Integer> al1 = new ArrayList<Integer>( Arrays.asList( 1, 4, 5, 7 )  );
+		ArrayList<Integer> al2 = new ArrayList<Integer>( Arrays.asList( 2, 3, 4, 6, 9, 11 ) );
+		ArrayList<Integer> al3 = new ArrayList<Integer>();
+		
+		mergeSortedArrays( al1, al2, al3 );
+		
+		for ( Integer val : al3 )
+		{
+			System.out.print( val );
+			System.out.print( ", " );
+		}
+		
+		System.out.println();
+	}
 
 	public static void performTests() {
 		
 		// java.lang.Enum<Enum<E>>
 		
 		// ArrayTest();
-		ExceptionTest();
+		// ExceptionTest();
+
+		/*
+		try {
+			ConcatFiles.concatFiles(
+					"C:\\PROJECTS\\JAVA\\FILES\\MsgSys.log.txt", 
+					"C:\\PROJECTS\\JAVA\\FILES\\WindowsUpdate (1).log", 
+					"C:\\PROJECTS\\JAVA\\FILES\\out"
+					);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		*/
+		
+		mergeArrayLists_test();
+		
+		return;
 		
 		
 
@@ -344,7 +416,6 @@ public class Algo {
 		 * System.out.println(kk3);
 		 */
 
-		return;
 	}
 
 }

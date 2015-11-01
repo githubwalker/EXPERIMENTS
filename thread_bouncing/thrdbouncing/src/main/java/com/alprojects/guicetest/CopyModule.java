@@ -1,6 +1,7 @@
 package com.alprojects.guicetest;
 
 import com.google.inject.AbstractModule;
+import com.google.inject.Binder;
 import com.google.inject.Scopes;
 
 public class CopyModule extends AbstractModule {
@@ -19,5 +20,4 @@ public class CopyModule extends AbstractModule {
 			.to(SimpleCopier.class)
 			.in(Scopes.SINGLETON);
 	}
-
 }

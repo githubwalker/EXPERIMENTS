@@ -5,10 +5,12 @@ import java.io.FileNotFoundException;
 import org.dom4j.DocumentException;
 
 
+
 // import com.alprojects.guicetest.CopyModule;
 // import com.alprojects.guicetest.ICopier;
 //import com.alprojects.package2.p2Class;
 import com.alprojects.Algos.Algo;
+import com.alprojects.guicetest.GuiceTest;
 import com.alprojects.hiber.TestPersist;
 import com.alprojects.inheritance.AccessClass;
 import com.alprojects.threads.ThreadTests;
@@ -161,7 +163,9 @@ public class App
     	// GuiceTest.testGuice();
     	// testHibernate();
     	// Algo.performTests();
-    	ThreadTests.testThreads();
+    	// ThreadTests.testThreads();
+    	// com.alprojects.Algos.Algo.performTests();
+    	GuiceTest.performTests();
     	return;
     	
     	/*
