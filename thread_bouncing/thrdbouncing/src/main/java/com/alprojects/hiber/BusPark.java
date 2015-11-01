@@ -33,6 +33,9 @@ import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 // DAO
 // http://www.studytrails.com/frameworks/spring/spring-hibernate-jpa.jsp
 
+// lection
+// http://www.youtube.com/watch?v=r8SlsJjmm8o
+
 public class BusPark 
 // extends HibernateDaoSupport 
 {

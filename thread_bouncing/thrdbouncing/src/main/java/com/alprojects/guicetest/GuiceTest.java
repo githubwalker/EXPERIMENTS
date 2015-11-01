@@ -2,6 +2,7 @@ package com.alprojects.guicetest;
 
 // http://www.ibm.com/developerworks/ru/library/j-guice/
 // http://www.infoq.com/news/2011/04/guice_30
+// http://www.journaldev.com/2403/google-guice-dependency-injection-example-tutorial
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;
@@ -20,6 +21,8 @@ public class GuiceTest {
 		Injector inj = Guice.createInjector( new CopyModule2() );
 		// ICopier cp = inj.getInstance(ICopier.class);
 		ICopier cp = inj.getInstance(ICopier.class);
+		
+		// ICopier cp = inj.getInstance( Key.get(ICopier.class, SpecialReader.class) );
 		// cp.copy();
 		// Class cls = Key.class;
 		// ICopier cp = inj.getInstance(Key.get(ICopier.class, SpecialReader.class));

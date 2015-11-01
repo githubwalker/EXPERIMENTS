@@ -6,13 +6,17 @@ import org.dom4j.DocumentException;
 
 
 
+
+
 // import com.alprojects.guicetest.CopyModule;
 // import com.alprojects.guicetest.ICopier;
 //import com.alprojects.package2.p2Class;
 import com.alprojects.Algos.Algo;
+import com.alprojects.collections.testCollections;
 import com.alprojects.guicetest.GuiceTest;
 import com.alprojects.hiber.TestPersist;
 import com.alprojects.inheritance.AccessClass;
+import com.alprojects.reflection.TestReflection;
 import com.alprojects.threads.ThreadTests;
 import com.alprojects.xml_tests.pomxml_parser;
 
@@ -165,7 +169,9 @@ public class App
     	// Algo.performTests();
     	// ThreadTests.testThreads();
     	// com.alprojects.Algos.Algo.performTests();
-    	GuiceTest.performTests();
+    	// GuiceTest.performTests();
+    	// TestReflection.testReflection();
+    	testCollections.MytestCollections();
     	return;
     	
     	/*
