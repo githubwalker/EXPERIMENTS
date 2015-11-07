@@ -1,8 +1,14 @@
 package com.alprojects.thrdbouncing;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 
 import org.dom4j.DocumentException;
+
+
+
+
+
 
 
 
@@ -13,6 +19,9 @@ import org.dom4j.DocumentException;
 // import com.alprojects.guicetest.ICopier;
 //import com.alprojects.package2.p2Class;
 import com.alprojects.Algos.Algo;
+import com.alprojects.Algos2.SortStringFile;
+import com.alprojects.Algos2.TestClone;
+import com.alprojects.Algos2.TestSerialize;
 import com.alprojects.collections.testCollections;
 import com.alprojects.guicetest.GuiceTest;
 import com.alprojects.hiber.SessionFactoryHolder;
@@ -163,13 +172,21 @@ public class App
 
     	try
     	{
-    		TestPersist.performTests();
-	    	// testCollections.MytestCollections();
-    	}
+    		// TestPersist.performTests();
+    		// sortFiles();
+			SortStringFile.Sort4bytesNumbers2( "C:\\__TEST__\\DSC_0895.JPG", "");
+    		// TestClone.testClone();
+    		// C:\__TEST__\DSC_0895.JPG
+    		TestSerialize.testSerialize();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     	finally
     	{
 	    	SessionFactoryHolder.closeFactory();
     	}
+    	// testCollections.MytestCollections();
     	
     	return;
     }
