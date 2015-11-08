@@ -27,7 +27,7 @@ public class TheDriver implements IPersistObject {
 	@Column(name="age")
 	private Integer age;
 	
-	@ManyToMany(mappedBy="drivers",cascade={CascadeType.ALL},fetch=FetchType.EAGER)
+	@ManyToMany(mappedBy="drivers",cascade={CascadeType.ALL},fetch=FetchType.LAZY)
 /*	
 	@JoinTable(
 			name="the_busdriver", 

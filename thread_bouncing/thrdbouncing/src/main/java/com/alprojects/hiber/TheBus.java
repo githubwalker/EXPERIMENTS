@@ -40,14 +40,15 @@ public class TheBus implements IPersistObject {
 	private String number = "default";
 
 	@ManyToMany(cascade={CascadeType.ALL},			
-			fetch=FetchType.EAGER)
+			fetch=FetchType.LAZY)
 	@JoinTable(
 			name="the_busdriver", 
 			joinColumns=@JoinColumn(name="bus_id"), 
 			inverseJoinColumns=@JoinColumn(name="driver_id"))
 	private Set<TheDriver> drivers = new HashSet<TheDriver>();
 	
-	@ManyToOne(cascade={CascadeType.ALL},fetch=FetchType.EAGER)
+	// @ManyToOne(cascade={CascadeType.ALL},fetch=FetchType.EAGER)
+	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="route_id")
 	private TheRoute theRoute; // bus belongs to this route
 

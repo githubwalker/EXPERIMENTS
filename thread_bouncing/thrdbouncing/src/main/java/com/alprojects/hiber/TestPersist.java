@@ -187,15 +187,42 @@ public class TestPersist {
 		bp.load();
 		// bp.closeFactory();
 		bp.printPark();
+		
+		return;
+	}
+
+	// http://stackoverflow.com/questions/3609653/hibernate-error-org-hibernate-nonuniqueobjectexception-a-different-object-with
+	private static void removeBusTest()
+	{
+		BusPark bp = new BusPark();
+		bp.load();
+		bp.printPark();
+		
+		Set<TheRoute> trs = bp.getRoutes();
+		
+		if ( !trs.isEmpty() )
+		{
+			TheRoute rt = trs.iterator().next();
+			Set<TheBus> buses = rt.getBuses();
+			if ( !buses.isEmpty() )
+			{
+				TheBus bs = buses.iterator().next();
+				rt.deleteBus( bs );
+			}
+		}
+		
 		return;
 	}
 
 	public static void performTests() {
-		testDelete1stRoute();
+		int i = 0;
+		removeBusTest();
+		// persistTest();
+		
+		// testDelete1stRoute();
 		// testDelete2ndRoute();
 		// testUpdate();
 		// loadTest();
-		// persistTest();
 	}
 }
 

@@ -213,18 +213,6 @@ public class BusPark
 		// Session session = this.getSession();
 		Session session = SessionFactoryHolder.getFactory().openSession();
 		
-		/*
-		if ( routes.contains(route) )
-		{
-			for (TheBus bs : route.getBuses()) {
-				for (TheDriver dr : bs.getDrivers()) {
-					session.delete(dr);
-				}
-				session.delete(bs);
-			}
-			session.delete(route);
-		}
-		*/
 		
 		Transaction trans = null;
 		boolean bOk = false; 
