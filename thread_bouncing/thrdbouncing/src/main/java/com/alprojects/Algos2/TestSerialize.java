@@ -1,8 +1,6 @@
 package com.alprojects.Algos2;
 
 import java.io.ByteArrayOutputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
@@ -29,6 +27,8 @@ public class TestSerialize {
 		Class1 obj1 = new Class1( 1, "2");
 		// FileOutputStream fos = new FileOutputStream("C:\\__LEARN_JAVA__\\repeat\\work\\temp.out");
 		// ObjectOutputStream oos = new ObjectOutputStream(fos);
+		
+		Integer i = new Integer(1);
 		
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
 		ObjectOutputStream oos = new ObjectOutputStream( baos ); 

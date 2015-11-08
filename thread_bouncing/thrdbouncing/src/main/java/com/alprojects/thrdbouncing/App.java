@@ -1,35 +1,18 @@
 package com.alprojects.thrdbouncing;
 
 import java.io.FileNotFoundException;
-import java.io.IOException;
 
 import org.dom4j.DocumentException;
 
-
-
-
-
-
-
-
-
-
-
-// import com.alprojects.guicetest.CopyModule;
-// import com.alprojects.guicetest.ICopier;
-//import com.alprojects.package2.p2Class;
 import com.alprojects.Algos.Algo;
-import com.alprojects.Algos2.SortStringFile;
-import com.alprojects.Algos2.TestClone;
-import com.alprojects.Algos2.TestSerialize;
-import com.alprojects.collections.testCollections;
-import com.alprojects.guicetest.GuiceTest;
+import com.alprojects.exceptions.TestExceptions;
 import com.alprojects.hiber.SessionFactoryHolder;
 import com.alprojects.hiber.TestPersist;
 import com.alprojects.inheritance.AccessClass;
-import com.alprojects.reflection.TestReflection;
-import com.alprojects.threads.ThreadTests;
 import com.alprojects.xml_tests.pomxml_parser;
+// import com.alprojects.guicetest.CopyModule;
+// import com.alprojects.guicetest.ICopier;
+//import com.alprojects.package2.p2Class;
 
 
 /**
@@ -172,15 +155,15 @@ public class App
 
     	try
     	{
-    		// TestPersist.performTests();
+    		TestPersist.performTests();
     		// sortFiles();
-			SortStringFile.Sort4bytesNumbers2( "C:\\__TEST__\\DSC_0895.JPG", "");
+			// SortStringFile.Sort4bytesNumbers2( "C:\\__TEST__\\DSC_0895.JPG", "");
     		// TestClone.testClone();
     		// C:\__TEST__\DSC_0895.JPG
-    		TestSerialize.testSerialize();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+    		// TestSerialize.testSerialize();
+    		// TestWildcards.testWildcards();
+    		// TestExceptions.testExceptions();
+    		// Algo.performTests();
 		}
     	finally
     	{

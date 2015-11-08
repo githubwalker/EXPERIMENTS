@@ -376,6 +376,106 @@ public class Algo {
 		
 		System.out.println();
 	}
+	
+	public static boolean anograms( String str1, String str2 )
+	{
+		char [] chars1 = str1.toCharArray();
+		char [] chars2 = str2.toCharArray();
+		
+		Arrays.sort(chars1);
+		Arrays.sort(chars2);
+		
+		return Arrays.equals(chars1, chars2);
+	}
+	
+	public static List<Integer> intersection( List<Integer> a1, List<Integer> a2 )
+	{
+		ArrayList<Integer> al = new ArrayList<Integer>();
+		return al;
+	}
+	
+	public static void testToIntarray()
+	{
+		ArrayList<Integer> al = new ArrayList();
+		al.add(1);
+		al.add(2);
+		al.add(3);
+		
+		Integer[] myarray = new Integer[0];
+		
+		Integer[] ar = al.toArray( myarray );
+		return;
+	}
+	
+	public static void string_immutability()
+	{
+		String s = "hello";
+		String backup_of_s = s;
+		s = "bye";
+		return;
+	}
+	
+	public static void testImmutable_helper( String str1 )
+	{
+		str1 = "change immutable";
+	}
+	
+	public static void testImmutable() 
+	{
+		String str1 = "first instance";
+		testImmutable_helper( str1 );
+		return;
+	}
+	
+	static class MyIntHolder
+	{
+		private Integer val;
+		
+		public MyIntHolder( int val )
+		{
+			this.val = new Integer(val);
+		}
+		
+		public Integer getValue() 
+		{
+			return val;
+		}
+		
+		public void setValue( Integer val )
+		{
+			this.val = val;
+		}
+	}
+	
+	static final class Imm
+	{
+		// private final Integer i1;
+		MyIntHolder i1;
+		
+		public Imm( int i )
+		{
+			i1 = new MyIntHolder(i);
+		}
+		
+		public final MyIntHolder getInt() 
+		{
+			return i1;
+		}
+	}
+	
+	public static void testImmutableInt_helper( Imm im )
+	{
+		MyIntHolder int1 = im.getInt();
+		int1.setValue(2);
+		return;
+	}
+	
+	public static void testImmutableInt()
+	{
+		Imm im1 = new Imm(1);
+		testImmutableInt_helper( im1 );
+		return;
+	}
 
 	public static void performTests() {
 		
@@ -397,29 +497,26 @@ public class Algo {
 		}
 		*/
 		
+		// boolean bok = anograms( "mary", "raby" );
+
+		/*
 		ArrayList<Integer> a = new ArrayList<Integer>();
 		Vector<Integer> v = new Vector<Integer>();
 		
 		mergeArrayLists_test();
+		*/
+		
+		// testToIntarray();
+		// string_immutability();
+		// testImmutable();
+		testImmutableInt();
 		
 		return;
-		
-		
-
-		// testSet();
-
-		// testArrays2();
-
-		/*
-		 * // String kk = testKickoffRepeatingChars( "12346712389_" ); String
-		 * srcString = "mutherfucker_1234_1235_mutheraaa"; String kk1 =
-		 * testKickoffRepeatingChars_noiterators( srcString ); String kk2 =
-		 * testKickoffRepeatingChars( srcString ); String kk3 =
-		 * testKickoffRepeatingChars_viaLinked( srcString );
-		 * System.out.println(kk1); System.out.println(kk2);
-		 * System.out.println(kk3);
-		 */
 
 	}
 
 }
+
+// immutables
+// http://stackoverflow.com/questions/10607990/how-should-i-copy-strings-in-java
+
