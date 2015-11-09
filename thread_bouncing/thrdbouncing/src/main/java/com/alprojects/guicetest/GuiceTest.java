@@ -3,6 +3,8 @@ package com.alprojects.guicetest;
 // http://www.ibm.com/developerworks/ru/library/j-guice/
 // http://www.infoq.com/news/2011/04/guice_30
 // http://www.journaldev.com/2403/google-guice-dependency-injection-example-tutorial
+// https://github.com/google/guice/wiki/BindingAnnotations
+// https://luisfsgoncalves.wordpress.com/2010/09/08/generic-bindings-with-guice/
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;

@@ -1,17 +1,20 @@
 package com.alprojects.Algos;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Deque;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashSet;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.ListIterator;
+import java.util.Spliterator;
 import java.util.Map.Entry;
+import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
-import java.util.Vector;
 
 import freemarker.core.ParseException;
 
@@ -22,13 +25,22 @@ public class Algo {
 	public static String testKickoffRepeatingChars_noiterators(String str) {
 		StringBuilder sb = new StringBuilder();
 		HashMap<Character, Integer> hm = new HashMap<Character, Integer>();
+		// Boolean bool = new Boolean(true);
 
 		for (int i = str.length() - 1; i >= 0; i--)
 			hm.put(str.charAt(i), i);
 
 		TreeMap<Integer, Character> tr = new TreeMap<Integer, Character>();
 
-		for (HashMap.Entry<Character, Integer> hm_entry : hm.entrySet())
+		/*
+		Set<Character> hks = hm.keySet();
+		Set<Entry<Character,Integer>> hes = hm.entrySet();
+		
+		Set<Integer> tks = tr.keySet();
+		Set<Entry<Integer,Character>> tes = tr.entrySet();
+		*/
+
+		for (Entry<Character, Integer> hm_entry : hm.entrySet())
 			tr.put(hm_entry.getValue(), hm_entry.getKey());
 
 		for (Entry<Integer, Character> tr_entry : tr.entrySet())
@@ -476,6 +488,52 @@ public class Algo {
 		testImmutableInt_helper( im1 );
 		return;
 	}
+	
+	public static void testList()
+	{
+		// Deque< String > dq = null;
+		LinkedList<Integer> ll = new LinkedList<Integer>();
+		ll.add( 1 );
+		ll.add( 2 );
+		ll.add( 3 );
+		ll.add( 4 );
+		ll.add( 5 );
+		
+		/*
+		ListIterator<Integer> lit = ll.listIterator();
+		
+		while ( lit.hasNext() )
+		{
+			// System.out.println( lit.ne );
+			Integer val = lit.next();
+			if ( val.equals(3) )
+			{
+				lit.add(100);
+			}
+		}
+		*/
+		
+		ListIterator<Integer> lit = ll.listIterator(ll.size());
+		while ( lit.hasPrevious() )
+		{
+			Integer val = lit.previous();
+			if (val.equals(3))
+				lit.add(100);
+		}
+
+		
+		// lit.previous();
+		// lit.previous();
+		// Integer val = lit.next();
+		// lit.remove();
+		// lit.add(100);
+		// System.out.println( lit.next().toString() );
+
+		for ( Integer i : ll )
+			System.out.println( i );
+		
+		return;
+	}
 
 	public static void performTests() {
 		
@@ -509,7 +567,9 @@ public class Algo {
 		// testToIntarray();
 		// string_immutability();
 		// testImmutable();
-		testImmutableInt();
+		// testImmutableInt();
+		// String rest = testKickoffRepeatingChars_noiterators( "1234566736" );
+		testList();
 		
 		return;
 

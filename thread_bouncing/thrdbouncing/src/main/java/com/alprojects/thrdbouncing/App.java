@@ -6,6 +6,7 @@ import org.dom4j.DocumentException;
 
 import com.alprojects.Algos.Algo;
 import com.alprojects.exceptions.TestExceptions;
+import com.alprojects.guicetest.GuiceTest;
 import com.alprojects.hiber.SessionFactoryHolder;
 import com.alprojects.hiber.TestPersist;
 import com.alprojects.inheritance.AccessClass;
@@ -148,6 +149,16 @@ public class App
 		AccessClass ac = new AccessClass();
 	}
 	
+	public static class finalTest
+	{
+		public final String str;
+		
+		public finalTest()
+		{
+			str = "456";
+		}
+	}
+	
 	// algorighms
 	// http://www.youtube.com/watch?v=f5OD9CKrZEw
 	
@@ -155,7 +166,7 @@ public class App
 
     	try
     	{
-    		TestPersist.performTests();
+    		// TestPersist.performTests();
     		// sortFiles();
 			// SortStringFile.Sort4bytesNumbers2( "C:\\__TEST__\\DSC_0895.JPG", "");
     		// TestClone.testClone();
@@ -164,6 +175,9 @@ public class App
     		// TestWildcards.testWildcards();
     		// TestExceptions.testExceptions();
     		// Algo.performTests();
+    		// GuiceTest.performTests();
+    		Algo.performTests();
+    		// new RuntimeException();
 		}
     	finally
     	{
