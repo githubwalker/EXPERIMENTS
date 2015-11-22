@@ -181,6 +181,7 @@ public class Algo {
 
 		int i = 0;
 		int j = 0;
+		
 
 		while (i < a1.size() && j < a2.size()) {
 			if (a1.get(i) < a2.get(j))

@@ -10,6 +10,7 @@ import com.alprojects.guicetest.GuiceTest;
 import com.alprojects.hiber.SessionFactoryHolder;
 import com.alprojects.hiber.TestPersist;
 import com.alprojects.inheritance.AccessClass;
+import com.alprojects.jdbc.JdbcTests;
 import com.alprojects.xml_tests.pomxml_parser;
 // import com.alprojects.guicetest.CopyModule;
 // import com.alprojects.guicetest.ICopier;
@@ -176,8 +177,10 @@ public class App
     		// TestExceptions.testExceptions();
     		// Algo.performTests();
     		// GuiceTest.performTests();
-    		Algo.performTests();
+    		// Algo.performTests();
     		// new RuntimeException();
+    		
+    		JdbcTests.performTests();
 		}
     	finally
     	{
