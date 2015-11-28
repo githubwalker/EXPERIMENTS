@@ -1,0 +1,26 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+    <bean id="some_functionality" class="com.alprojects.aop.SomeFunctionality"/> 
+
+	<bean id="HijackBeforeMethod_Bean" class="com.alprojects.aop.HijackBeforeMethod"/>
+	<bean id="HijackAfterMethod_Bean" class="com.alprojects.aop.HijackAfterMethod"/>
+	<bean id="FunctionalityLogger_Bean" class="com.alprojects.aop.FunctionalityLogger"/>
+	
+	
+	<bean id="some_functionality_proxy" class="org.springframework.aop.framework.ProxyFactoryBean">
+
+		<property name="target" ref="some_functionality" />
+
+		<property name="interceptorNames">
+			<list>
+				<value>HijackBeforeMethod_Bean</value>
+				<value>HijackAfterMethod_Bean</value>
+				<value>FunctionalityLogger_Bean</value>
+			</list>
+		</property>	
+	</bean>
+
+</beans>

@@ -1,10 +1,12 @@
 package com.alprojects.spring_tests;
 
+import java.util.logging.Logger;
+
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import com.alprojects.aop.SomeFunctionality;
 import com.alprojects.bean2.MyCalculator;
-import com.alprojects.beans1.HelloWorldBean;
 
 /**
  * Hello world!
@@ -23,8 +25,23 @@ public class App {
 		return;
 	}
 	
+	public static void testAop()
+	{
+		ApplicationContext ac = new ClassPathXmlApplicationContext("Spring-Module3.xml");
+		SomeFunctionality sf = (SomeFunctionality)ac.getBean("some_functionality_proxy");
+		
+		sf.doSomething();
+		
+		sf.printSomething("Hello World!!!");
+		
+		return;
+	}
+	
 	public static void main(String[] args) {
-		test2();
+		// test2();
+		
+		// Logger.getLogger(SomeFunctionality.class.getName());
+		testAop();
 		
 		return;
 		
