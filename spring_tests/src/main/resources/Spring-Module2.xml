@@ -1,0 +1,15 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+    <bean id="screen" class="com.alprojects.bean2.ScreenWriter" />
+    <bean id="multiply" class="com.alprojects.bean2.OperationMul" />
+    <bean id="add" class="com.alprojects.bean2.OperationAdd" />
+ 
+    <bean id="calculator" class="com.alprojects.bean2.MyCalculator">
+        <property name="operation" ref="multiply" />
+        <property name="writer" ref="screen"/>
+    </bean>
+
+</beans>
