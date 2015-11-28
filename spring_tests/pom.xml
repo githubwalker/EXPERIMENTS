@@ -27,6 +27,19 @@
 		<artifactId>spring</artifactId>
 		<version>LATEST</version>
 	</dependency>    
+	
+	<dependency>
+		<groupId>cglib</groupId>
+		<artifactId>cglib</artifactId>
+		<version>LATEST</version>
+	</dependency>
+	
+	<dependency>
+		<groupId>log4j</groupId>
+		<artifactId>log4j</artifactId>
+		<version>LATEST</version>
+	</dependency>
+		
     
   </dependencies>
 </project>
