@@ -7,6 +7,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.alprojects.aop.SomeFunctionality;
 import com.alprojects.bean2.MyCalculator;
+import com.alprojects.spring_jdbc.SpringJdbcTest;
 
 /**
  * Hello world!
@@ -41,7 +42,8 @@ public class App {
 		// test2();
 		
 		// Logger.getLogger(SomeFunctionality.class.getName());
-		testAop();
+		// testAop();
+		SpringJdbcTest.tests();
 		
 		return;
 		
@@ -56,4 +58,6 @@ public class App {
 	}
 }
 
+
+// http://www.javacodegeeks.com/2013/09/spring-integration-a-lightweight-integration-approach.html
 
