@@ -1,6 +1,8 @@
 package com.alprojects.conc_test;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.TreeSet;
@@ -68,9 +70,11 @@ public class App
 		private CountDownLatch cdl_;
 		private int maxcount_;
 		private HashSet<Integer> popped_numbers_ = null;
+		private boolean bCollectOutput_ = false;
 		
-		public ThrPopper( concurrent_queue<Integer> the_list, CountDownLatch cdl, int maxcount ) 
+		public ThrPopper( concurrent_queue<Integer> the_list, CountDownLatch cdl, int maxcount, boolean bCollectOutput ) 
 		{
+			bCollectOutput_ = bCollectOutput;
 			this.the_list_ = the_list;
 			this.cdl_ = cdl;
 			maxcount_ = maxcount;
@@ -88,13 +92,21 @@ public class App
 			
 			concurrent_queue.BoolResult br = new concurrent_queue.BoolResult();
 			
-			for ( int i = 0; i < maxcount_; i ++ )
+			if ( bCollectOutput_ )
 			{
-				Integer popint = the_list_.pop(br);
-				if ( br.getResult() )
+				for ( int i = 0; i < maxcount_; i ++ )
 				{
-					popped_numbers_.add(popint);
+					Integer popint = the_list_.pop(br);
+					if ( br.getResult() )
+					{
+						popped_numbers_.add(popint);
+					}
 				}
+			}
+			else
+			{
+				for ( int i = 0; i < maxcount_; i ++ )
+					the_list_.pop(br);
 			}
 		}
 		
@@ -128,7 +140,8 @@ public class App
 		
 		final int nPushThreads = pp.nPushThreads;
 		final int nPopThreads = pp.nPopThreads;
-		final int nIterations = pp.nIterations; 
+		final int nIterations = pp.nIterations;
+		final boolean bCheckOutput = pp.bCheckOutput;
 
 		System.err.println( "[INFO] Number push threads to run :" + Integer.toString(nPushThreads) );
 		System.err.println( "[INFO] Number pop threads to run :" + Integer.toString(nPopThreads) );
@@ -140,7 +153,7 @@ public class App
 			pushers.add(new ThrPusher( ls, cdl, ai, nIterations ));
 		
 		for ( int i = 0; i < nPopThreads; i ++ )
-			poppers.add(new ThrPopper( ls, cdl, nIterations ));
+			poppers.add(new ThrPopper( ls, cdl, nIterations, bCheckOutput ));
 		
 		for( ThrPusher thr : pushers )
 			thr.start();
@@ -148,6 +161,7 @@ public class App
 		for( ThrPopper thr : poppers )
 			thr.start();
 		
+		long startTime = System.currentTimeMillis();
 		cdl.countDown();
 		
 		for( ThrPusher thr : pushers )
@@ -170,44 +184,56 @@ public class App
 		System.err.println( "[INFO] push collision percentage :" +  Double.toString(nPushCollisionsPerc) );
 		System.err.println( "[INFO] pop collision percentage :" +  Double.toString(nPopCollisionsPerc) );
 		
-		while( !ls.isempty() )
+		if ( bCheckOutput )
 		{
-			Integer icur = ls.pop();
-			if ( ts.contains(icur) )
-				System.err.println( "[FAIL] : " + icur.toString() + "already accounted" );
-			else
-				ts.add(icur);
-		}
-		
-		for ( ThrPopper thr : poppers )
-		{
-			Set<Integer> ints = thr.getCollectedInts();
-			for ( Integer icur : ints )
+			while( !ls.isempty() )
 			{
+				Integer icur = ls.pop();
 				if ( ts.contains(icur) )
 					System.err.println( "[FAIL] : " + icur.toString() + "already accounted" );
 				else
 					ts.add(icur);
 			}
-		}
-		
-		if ( ts.size() != nPushThreads * nIterations ) 
-		{
-			System.err.println( "[FAIL] : got size (" +  Integer.toString(ts.size()) + ", but expected " + Integer.toString(nPushThreads * nIterations) + ")" );
-		}
-		
-		Integer prevint = -1;
-		for( Integer icur : ts )
-		{
-			if ( prevint + 1 != icur )
+			
+			for ( ThrPopper thr : poppers )
 			{
-				System.err.println( "[FAIL] : " + Integer.toString(prevint + 1) + " missing" );
+				Set<Integer> ints = thr.getCollectedInts();
+				for ( Integer icur : ints )
+				{
+					if ( ts.contains(icur) )
+						System.err.println( "[FAIL] : " + icur.toString() + "already accounted" );
+					else
+						ts.add(icur);
+				}
 			}
 			
-			prevint = icur;
+			if ( ts.size() != nPushThreads * nIterations ) 
+			{
+				System.err.println( "[FAIL] : got size (" +  Integer.toString(ts.size()) + ", but expected " + Integer.toString(nPushThreads * nIterations) + ")" );
+			}
+			
+			Integer prevint = -1;
+			for( Integer icur : ts )
+			{
+				if ( prevint + 1 != icur )
+				{
+					System.err.println( "[FAIL] : " + Integer.toString(prevint + 1) + " missing" );
+				}
+				
+				prevint = icur;
+			}
+			
+			System.err.println( "Done checking" );
+		}
+		else
+		{
+			System.err.println( "queue output check will not be performed " );
 		}
 		
-		System.err.println( "Done checking" );
+		long endTime = System.currentTimeMillis();
+		System.err.println("time spent : " + Long.toString(endTime-startTime) + " milliseconds" );
+		
+		System.err.println( "Done running" );
 	}
 	
 	public static void testMultithreading4list( parsed_params pp  ) {
@@ -228,17 +254,19 @@ public class App
 		public int nPushThreads;
 		public int nPopThreads;
 		public int nIterations;
+		public boolean bCheckOutput;
 		public boolean bHelp = true;
 		
 		public parsed_params()
 		{
 		}
 		
-		public parsed_params( int nPushThreads, int nPopThreads, int nIterations )
+		public parsed_params( int nPushThreads, int nPopThreads, int nIterations, boolean bCheckOutput )
 		{
 			this.nPushThreads = nPushThreads;
 			this.nPopThreads = nPopThreads;
 			this.nIterations = nIterations;
+			this.bCheckOutput = bCheckOutput;
 			this.bHelp = false;
 		}
 		
@@ -260,11 +288,30 @@ public class App
 					msg + ": failed to parse " + ( str == null ? "<null>" : str ) + ": " + nfe.getMessage() );
 		}
 	}
+	
+	private static boolean boolParserHelper( String str, String msg ) throws Exception
+	{
+		final String yesValues[] = { "true", "yes", "y" }; 
+		final String noValues[] = { "false", "no", "n" };
+		
+		
+		if ( str == null )
+			return false;
+
+		if ( Arrays.asList(yesValues).contains(str) )
+			return true;
+		
+		if ( !Arrays.asList(noValues).contains(str) )
+			throw new Exception( msg );
+
+		return false;
+	}
 
 	static Options ops;
 	static Option opPush;
 	static Option opPop;
-	static Option opIters; 
+	static Option opIters;
+	static Option opCheckOutput;
 	static Option opHelp;
 	
 	static
@@ -273,8 +320,9 @@ public class App
 		opPush = Option.builder("u").longOpt("push-threads").desc("number of push threads to run").required().hasArg().build();
 		opPop = Option.builder("o").longOpt("pop-threads").desc("number of pop threads to run").required().hasArg().build();
 		opIters = Option.builder("i").longOpt("iterations").desc("number of iteration to run in each push/pop thread").required().hasArg().build(); 
+		opCheckOutput = Option.builder("c").longOpt("check-output").desc("check output").required(false).hasArg(true).build();
 		opHelp = Option.builder("h").longOpt("help").desc("produce help").required(false).hasArg(false).build();
-		ops.addOption(opPush).addOption(opPop).addOption(opIters).addOption(opHelp);
+		ops.addOption(opPush).addOption(opPop).addOption(opIters).addOption(opCheckOutput).addOption(opHelp);
 	}
 	
 	public static void printHelp()
@@ -298,11 +346,13 @@ public class App
 			String strPushThreads = cmdLine.getOptionValue("u");
 			String strPopThreads = cmdLine.getOptionValue("o");
 			String strIters = cmdLine.getOptionValue("i");
+			String strCheckOutput = cmdLine.getOptionValue("c", "true");
 			
 			return new parsed_params( 
 					intParserHelper( strPushThreads, "number of push threads" ),
 					intParserHelper( strPopThreads, "number of pop threads" ),
-					intParserHelper( strIters, "number of iters threads" )
+					intParserHelper( strIters, "number of iters threads" ),
+					boolParserHelper( strCheckOutput, "check bool param consistence" )
 					);
 		}
 	}
