@@ -1,5 +1,6 @@
 package com.alprojects.test_quartz;
 
+import org.quartz.CronScheduleBuilder;
 import org.quartz.JobBuilder;
 import org.quartz.JobDetail;
 import org.quartz.JobKey;

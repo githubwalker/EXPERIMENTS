@@ -1,9 +1,12 @@
 package com.alprojects.hiber;
 
 import java.util.HashSet;
-
 import java.util.Iterator;
 import java.util.Set;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -100,7 +103,17 @@ public class BusPark
 		// Session session = this.getServiceFactory().openSession();
 		// Session session = getSession();
 		Session session = SessionFactoryHolder.getFactory().openSession();
+		
 
+		/*
+		EntityManagerFactory entityManagerFactory 
+			= Persistence.createEntityManagerFactory("");
+		
+		EntityManager em = entityManagerFactory.createEntityManager();
+		*/
+
+
+		
 		Transaction trans = null;
 
 		try {

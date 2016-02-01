@@ -67,6 +67,8 @@ public class App {
             if ((i % 1000) == 0) {
                 System.out.println(String.format("Sent %d messages", i));
             }
+            
+            Thread.sleep( 1000 );
         }
 
         producer.send(session.createTextMessage("SHUTDOWN"));

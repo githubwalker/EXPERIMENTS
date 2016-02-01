@@ -31,7 +31,7 @@ public class Algo {
 			hm.put(str.charAt(i), i);
 
 		TreeMap<Integer, Character> tr = new TreeMap<Integer, Character>();
-
+		
 		/*
 		Set<Character> hks = hm.keySet();
 		Set<Entry<Character,Integer>> hes = hm.entrySet();
@@ -535,6 +535,32 @@ public class Algo {
 		
 		return;
 	}
+	
+	public static List<Integer> findIntersection( List<Integer> l1, List<Integer> l2 ) {
+		ArrayList<Integer> rv = new ArrayList<Integer>();
+		rv.addAll(l1);
+		rv.retainAll(l2);
+		return rv;
+	}
+	
+	public static void testIntersection() {
+		ArrayList<Integer> l1 = new ArrayList<Integer>();
+		ArrayList<Integer> l2 = new ArrayList<Integer>();
+		
+		l1.add(1);
+		l1.add(2);
+		l1.add(3);
+		l1.add(4);
+		l1.add(5);
+		
+		l2.add(3);
+		l2.add(5);
+		l2.add(7);
+		
+		List<Integer> rv = findIntersection( l1, l2 );
+		
+		return;
+	}
 
 	public static void performTests() {
 		
@@ -570,7 +596,8 @@ public class Algo {
 		// testImmutable();
 		// testImmutableInt();
 		// String rest = testKickoffRepeatingChars_noiterators( "1234566736" );
-		testList();
+		// testList();
+		testIntersection();
 		
 		return;
 
