@@ -1,0 +1,634 @@
+diff --git a/Hello/src/main/java/com/alprojects/Hello/SessionServlet.java b/Hello/src/main/java/com/alprojects/Hello/SessionServlet.java
+index 5c1269d..f9512eb 100644
+--- a/Hello/src/main/java/com/alprojects/Hello/SessionServlet.java
++++ b/Hello/src/main/java/com/alprojects/Hello/SessionServlet.java
+@@ -26,7 +26,14 @@ public class SessionServlet extends HttpServlet {
+          }
+          session.setAttribute("accessCount", accessCount);
+       }
+-
++      
++      // this.getServletContext().log(msg);
++      // this.getServletConfig()
++      // request.getParameter(name)
++      // this.getServletContext().getResourceAsStream(path)
++      // request.getParameter(name)
++      // request.getRequestDispatcher(path)
++      
+       // Write the response message, in an HTML page
+       try {
+          out.println("<!DOCTYPE html>");
+diff --git a/JmsAsyncListener/JmsAsyncTest/.classpath b/JmsAsyncListener/JmsAsyncTest/.classpath
+index 0a1dadd..4214a97 100644
+--- a/JmsAsyncListener/JmsAsyncTest/.classpath
++++ b/JmsAsyncListener/JmsAsyncTest/.classpath
+@@ -12,12 +12,12 @@
+ 			<attribute name="maven.pomderived" value="true"/>
+ 		</attributes>
+ 	</classpathentry>
+-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/J2SE-1.5">
++	<classpathentry kind="con" path="org.eclipse.m2e.MAVEN2_CLASSPATH_CONTAINER">
+ 		<attributes>
+ 			<attribute name="maven.pomderived" value="true"/>
+ 		</attributes>
+ 	</classpathentry>
+-	<classpathentry kind="con" path="org.eclipse.m2e.MAVEN2_CLASSPATH_CONTAINER">
++	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7">
+ 		<attributes>
+ 			<attribute name="maven.pomderived" value="true"/>
+ 		</attributes>
+diff --git a/JmsAsyncListener/JmsAsyncTest/.settings/org.eclipse.jdt.core.prefs b/JmsAsyncListener/JmsAsyncTest/.settings/org.eclipse.jdt.core.prefs
+index abec6ca..ec4300d 100644
+--- a/JmsAsyncListener/JmsAsyncTest/.settings/org.eclipse.jdt.core.prefs
++++ b/JmsAsyncListener/JmsAsyncTest/.settings/org.eclipse.jdt.core.prefs
+@@ -1,5 +1,5 @@
+ eclipse.preferences.version=1
+-org.eclipse.jdt.core.compiler.codegen.targetPlatform=1.5
+-org.eclipse.jdt.core.compiler.compliance=1.5
++org.eclipse.jdt.core.compiler.codegen.targetPlatform=1.7
++org.eclipse.jdt.core.compiler.compliance=1.7
+ org.eclipse.jdt.core.compiler.problem.forbiddenReference=warning
+-org.eclipse.jdt.core.compiler.source=1.5
++org.eclipse.jdt.core.compiler.source=1.7
+diff --git a/Listener/.classpath b/Listener/.classpath
+index 0a1dadd..4214a97 100644
+--- a/Listener/.classpath
++++ b/Listener/.classpath
+@@ -12,12 +12,12 @@
+ 			<attribute name="maven.pomderived" value="true"/>
+ 		</attributes>
+ 	</classpathentry>
+-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/J2SE-1.5">
++	<classpathentry kind="con" path="org.eclipse.m2e.MAVEN2_CLASSPATH_CONTAINER">
+ 		<attributes>
+ 			<attribute name="maven.pomderived" value="true"/>
+ 		</attributes>
+ 	</classpathentry>
+-	<classpathentry kind="con" path="org.eclipse.m2e.MAVEN2_CLASSPATH_CONTAINER">
++	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7">
+ 		<attributes>
+ 			<attribute name="maven.pomderived" value="true"/>
+ 		</attributes>
+diff --git a/Listener/.settings/org.eclipse.jdt.core.prefs b/Listener/.settings/org.eclipse.jdt.core.prefs
+index abec6ca..ec4300d 100644
+--- a/Listener/.settings/org.eclipse.jdt.core.prefs
++++ b/Listener/.settings/org.eclipse.jdt.core.prefs
+@@ -1,5 +1,5 @@
+ eclipse.preferences.version=1
+-org.eclipse.jdt.core.compiler.codegen.targetPlatform=1.5
+-org.eclipse.jdt.core.compiler.compliance=1.5
++org.eclipse.jdt.core.compiler.codegen.targetPlatform=1.7
++org.eclipse.jdt.core.compiler.compliance=1.7
+ org.eclipse.jdt.core.compiler.problem.forbiddenReference=warning
+-org.eclipse.jdt.core.compiler.source=1.5
++org.eclipse.jdt.core.compiler.source=1.7
+diff --git a/My1stWebClient/My1stWebClient/.classpath b/My1stWebClient/My1stWebClient/.classpath
+index 640998a..291ec03 100644
+--- a/My1stWebClient/My1stWebClient/.classpath
++++ b/My1stWebClient/My1stWebClient/.classpath
+@@ -12,11 +12,6 @@
+ 			<attribute name="maven.pomderived" value="true"/>
+ 		</attributes>
+ 	</classpathentry>
+-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/J2SE-1.5">
+-		<attributes>
+-			<attribute name="maven.pomderived" value="true"/>
+-		</attributes>
+-	</classpathentry>
+ 	<classpathentry kind="con" path="org.eclipse.m2e.MAVEN2_CLASSPATH_CONTAINER">
+ 		<attributes>
+ 			<attribute name="maven.pomderived" value="true"/>
+@@ -28,5 +23,10 @@
+ 	<classpathentry kind="lib" path="C:/Development/eclipse/eclipse-jee-luna-SR1-win32-x86_64/plugins/javax.xml.soap_1.2.0.v201005080501/lib/saaj.jar"/>
+ 	<classpathentry kind="lib" path="C:/Development/eclipse/eclipse-jee-luna-SR1-win32-x86_64/plugins/javax.wsdl_1.6.2.v201012040545.jar"/>
+ 	<classpathentry kind="lib" path="C:/Development/eclipse/eclipse-jee-luna-SR1-win32-x86_64/plugins/org.apache.commons.logging_1.1.1.v201101211721.jar"/>
++	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8">
++		<attributes>
++			<attribute name="maven.pomderived" value="true"/>
++		</attributes>
++	</classpathentry>
+ 	<classpathentry kind="output" path="target/classes"/>
+ </classpath>
+diff --git a/My1stWebClient/My1stWebClient/.settings/org.eclipse.jdt.core.prefs b/My1stWebClient/My1stWebClient/.settings/org.eclipse.jdt.core.prefs
+index abec6ca..714351a 100644
+--- a/My1stWebClient/My1stWebClient/.settings/org.eclipse.jdt.core.prefs
++++ b/My1stWebClient/My1stWebClient/.settings/org.eclipse.jdt.core.prefs
+@@ -1,5 +1,5 @@
+ eclipse.preferences.version=1
+-org.eclipse.jdt.core.compiler.codegen.targetPlatform=1.5
+-org.eclipse.jdt.core.compiler.compliance=1.5
++org.eclipse.jdt.core.compiler.codegen.targetPlatform=1.8
++org.eclipse.jdt.core.compiler.compliance=1.8
+ org.eclipse.jdt.core.compiler.problem.forbiddenReference=warning
+-org.eclipse.jdt.core.compiler.source=1.5
++org.eclipse.jdt.core.compiler.source=1.8
+diff --git a/MySOAP/pom.xml b/MySOAP/pom.xml
+index a00d661..8e9a9fb 100644
+--- a/MySOAP/pom.xml
++++ b/MySOAP/pom.xml
+@@ -56,6 +56,13 @@
+ 			<artifactId>spring-tx</artifactId>
+ 			<version>LATEST</version> <!-- 4.2.3.RELEASE -->
+ 		</dependency>
++		
++		<dependency>
++			<groupId>javax.ws.rs</groupId>
++			<artifactId>jsr311-api</artifactId>
++			<version>LATEST</version>
++		</dependency>
++		
+ 	  
+ 	</dependencies>  
+   
+diff --git a/Publisher/.classpath b/Publisher/.classpath
+index 0a1dadd..4214a97 100644
+--- a/Publisher/.classpath
++++ b/Publisher/.classpath
+@@ -12,12 +12,12 @@
+ 			<attribute name="maven.pomderived" value="true"/>
+ 		</attributes>
+ 	</classpathentry>
+-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/J2SE-1.5">
++	<classpathentry kind="con" path="org.eclipse.m2e.MAVEN2_CLASSPATH_CONTAINER">
+ 		<attributes>
+ 			<attribute name="maven.pomderived" value="true"/>
+ 		</attributes>
+ 	</classpathentry>
+-	<classpathentry kind="con" path="org.eclipse.m2e.MAVEN2_CLASSPATH_CONTAINER">
++	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7">
+ 		<attributes>
+ 			<attribute name="maven.pomderived" value="true"/>
+ 		</attributes>
+diff --git a/Publisher/.settings/org.eclipse.jdt.core.prefs b/Publisher/.settings/org.eclipse.jdt.core.prefs
+index abec6ca..ec4300d 100644
+--- a/Publisher/.settings/org.eclipse.jdt.core.prefs
++++ b/Publisher/.settings/org.eclipse.jdt.core.prefs
+@@ -1,5 +1,5 @@
+ eclipse.preferences.version=1
+-org.eclipse.jdt.core.compiler.codegen.targetPlatform=1.5
+-org.eclipse.jdt.core.compiler.compliance=1.5
++org.eclipse.jdt.core.compiler.codegen.targetPlatform=1.7
++org.eclipse.jdt.core.compiler.compliance=1.7
+ org.eclipse.jdt.core.compiler.problem.forbiddenReference=warning
+-org.eclipse.jdt.core.compiler.source=1.5
++org.eclipse.jdt.core.compiler.source=1.7
+diff --git a/Publisher/src/main/java/com/alprojects/Publisher/App.java b/Publisher/src/main/java/com/alprojects/Publisher/App.java
+index 46311ba..66fcb70 100644
+--- a/Publisher/src/main/java/com/alprojects/Publisher/App.java
++++ b/Publisher/src/main/java/com/alprojects/Publisher/App.java
+@@ -67,6 +67,8 @@ public class App {
+             if ((i % 1000) == 0) {
+                 System.out.println(String.format("Sent %d messages", i));
+             }
++            
++            Thread.sleep( 1000 );
+         }
+ 
+         producer.send(session.createTextMessage("SHUTDOWN"));
+diff --git a/StringTest/.classpath b/StringTest/.classpath
+index b9b752f..b2cca82 100644
+--- a/StringTest/.classpath
++++ b/StringTest/.classpath
+@@ -12,16 +12,21 @@
+ 			<attribute name="maven.pomderived" value="true"/>
+ 		</attributes>
+ 	</classpathentry>
+-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/J2SE-1.5">
++	<classpathentry kind="con" path="org.eclipse.m2e.MAVEN2_CLASSPATH_CONTAINER">
+ 		<attributes>
+ 			<attribute name="maven.pomderived" value="true"/>
+ 		</attributes>
+ 	</classpathentry>
+-	<classpathentry kind="con" path="org.eclipse.m2e.MAVEN2_CLASSPATH_CONTAINER">
++	<classpathentry kind="lib" path="C:/Program Files (x86)/MySQL/Connector.J 5.1/mysql-connector-java-5.1.36-bin.jar"/>
++	<classpathentry excluding="**" kind="src" output="target/classes" path="src/main/resources">
++		<attributes>
++			<attribute name="maven.pomderived" value="true"/>
++		</attributes>
++	</classpathentry>
++	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8">
+ 		<attributes>
+ 			<attribute name="maven.pomderived" value="true"/>
+ 		</attributes>
+ 	</classpathentry>
+-	<classpathentry kind="lib" path="C:/Program Files (x86)/MySQL/Connector.J 5.1/mysql-connector-java-5.1.36-bin.jar"/>
+ 	<classpathentry kind="output" path="target/classes"/>
+ </classpath>
+diff --git a/StringTest/.settings/org.eclipse.core.resources.prefs b/StringTest/.settings/org.eclipse.core.resources.prefs
+index f9fe345..839d647 100644
+--- a/StringTest/.settings/org.eclipse.core.resources.prefs
++++ b/StringTest/.settings/org.eclipse.core.resources.prefs
+@@ -1,4 +1,5 @@
+ eclipse.preferences.version=1
+ encoding//src/main/java=UTF-8
++encoding//src/main/resources=UTF-8
+ encoding//src/test/java=UTF-8
+ encoding/<project>=UTF-8
+diff --git a/conc_test/.classpath b/conc_test/.classpath
+index 0a1dadd..4214a97 100644
+--- a/conc_test/.classpath
++++ b/conc_test/.classpath
+@@ -12,12 +12,12 @@
+ 			<attribute name="maven.pomderived" value="true"/>
+ 		</attributes>
+ 	</classpathentry>
+-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/J2SE-1.5">
++	<classpathentry kind="con" path="org.eclipse.m2e.MAVEN2_CLASSPATH_CONTAINER">
+ 		<attributes>
+ 			<attribute name="maven.pomderived" value="true"/>
+ 		</attributes>
+ 	</classpathentry>
+-	<classpathentry kind="con" path="org.eclipse.m2e.MAVEN2_CLASSPATH_CONTAINER">
++	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7">
+ 		<attributes>
+ 			<attribute name="maven.pomderived" value="true"/>
+ 		</attributes>
+diff --git a/conc_test/.settings/org.eclipse.jdt.core.prefs b/conc_test/.settings/org.eclipse.jdt.core.prefs
+index abec6ca..ec4300d 100644
+--- a/conc_test/.settings/org.eclipse.jdt.core.prefs
++++ b/conc_test/.settings/org.eclipse.jdt.core.prefs
+@@ -1,5 +1,5 @@
+ eclipse.preferences.version=1
+-org.eclipse.jdt.core.compiler.codegen.targetPlatform=1.5
+-org.eclipse.jdt.core.compiler.compliance=1.5
++org.eclipse.jdt.core.compiler.codegen.targetPlatform=1.7
++org.eclipse.jdt.core.compiler.compliance=1.7
+ org.eclipse.jdt.core.compiler.problem.forbiddenReference=warning
+-org.eclipse.jdt.core.compiler.source=1.5
++org.eclipse.jdt.core.compiler.source=1.7
+diff --git a/test_quartz/src/main/java/com/alprojects/test_quartz/App.java b/test_quartz/src/main/java/com/alprojects/test_quartz/App.java
+index 4d0b258..62bc456 100644
+--- a/test_quartz/src/main/java/com/alprojects/test_quartz/App.java
++++ b/test_quartz/src/main/java/com/alprojects/test_quartz/App.java
+@@ -1,5 +1,6 @@
+ package com.alprojects.test_quartz;
+ 
++import org.quartz.CronScheduleBuilder;
+ import org.quartz.JobBuilder;
+ import org.quartz.JobDetail;
+ import org.quartz.JobKey;
+diff --git a/thread_bouncing/thrdbouncing/.classpath b/thread_bouncing/thrdbouncing/.classpath
+index 0a1dadd..6dbe123 100644
+--- a/thread_bouncing/thrdbouncing/.classpath
++++ b/thread_bouncing/thrdbouncing/.classpath
+@@ -12,12 +12,17 @@
+ 			<attribute name="maven.pomderived" value="true"/>
+ 		</attributes>
+ 	</classpathentry>
+-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/J2SE-1.5">
++	<classpathentry kind="con" path="org.eclipse.m2e.MAVEN2_CLASSPATH_CONTAINER">
+ 		<attributes>
+ 			<attribute name="maven.pomderived" value="true"/>
+ 		</attributes>
+ 	</classpathentry>
+-	<classpathentry kind="con" path="org.eclipse.m2e.MAVEN2_CLASSPATH_CONTAINER">
++	<classpathentry excluding="**" kind="src" output="target/classes" path="src/main/resources">
++		<attributes>
++			<attribute name="maven.pomderived" value="true"/>
++		</attributes>
++	</classpathentry>
++	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7">
+ 		<attributes>
+ 			<attribute name="maven.pomderived" value="true"/>
+ 		</attributes>
+diff --git a/thread_bouncing/thrdbouncing/.project b/thread_bouncing/thrdbouncing/.project
+index 29d988f..62b01ef 100644
+--- a/thread_bouncing/thrdbouncing/.project
++++ b/thread_bouncing/thrdbouncing/.project
+@@ -11,12 +11,12 @@
+ 			</arguments>
+ 		</buildCommand>
+ 		<buildCommand>
+-			<name>org.eclipse.m2e.core.maven2Builder</name>
++			<name>org.hibernate.eclipse.console.hibernateBuilder</name>
+ 			<arguments>
+ 			</arguments>
+ 		</buildCommand>
+ 		<buildCommand>
+-			<name>org.hibernate.eclipse.console.hibernateBuilder</name>
++			<name>org.eclipse.m2e.core.maven2Builder</name>
+ 			<arguments>
+ 			</arguments>
+ 		</buildCommand>
+diff --git a/thread_bouncing/thrdbouncing/.settings/org.eclipse.core.resources.prefs b/thread_bouncing/thrdbouncing/.settings/org.eclipse.core.resources.prefs
+index f9fe345..839d647 100644
+--- a/thread_bouncing/thrdbouncing/.settings/org.eclipse.core.resources.prefs
++++ b/thread_bouncing/thrdbouncing/.settings/org.eclipse.core.resources.prefs
+@@ -1,4 +1,5 @@
+ eclipse.preferences.version=1
+ encoding//src/main/java=UTF-8
++encoding//src/main/resources=UTF-8
+ encoding//src/test/java=UTF-8
+ encoding/<project>=UTF-8
+diff --git a/thread_bouncing/thrdbouncing/.settings/org.eclipse.jdt.core.prefs b/thread_bouncing/thrdbouncing/.settings/org.eclipse.jdt.core.prefs
+index 13b3428..6b5aebc 100644
+--- a/thread_bouncing/thrdbouncing/.settings/org.eclipse.jdt.core.prefs
++++ b/thread_bouncing/thrdbouncing/.settings/org.eclipse.jdt.core.prefs
+@@ -1,13 +1,13 @@
+ eclipse.preferences.version=1
+ org.eclipse.jdt.core.compiler.codegen.inlineJsrBytecode=enabled
+ org.eclipse.jdt.core.compiler.codegen.methodParameters=do not generate
+-org.eclipse.jdt.core.compiler.codegen.targetPlatform=1.8
++org.eclipse.jdt.core.compiler.codegen.targetPlatform=1.7
+ org.eclipse.jdt.core.compiler.codegen.unusedLocal=preserve
+-org.eclipse.jdt.core.compiler.compliance=1.8
++org.eclipse.jdt.core.compiler.compliance=1.7
+ org.eclipse.jdt.core.compiler.debug.lineNumber=generate
+ org.eclipse.jdt.core.compiler.debug.localVariable=generate
+ org.eclipse.jdt.core.compiler.debug.sourceFile=generate
+ org.eclipse.jdt.core.compiler.problem.assertIdentifier=error
+ org.eclipse.jdt.core.compiler.problem.enumIdentifier=error
+ org.eclipse.jdt.core.compiler.problem.forbiddenReference=warning
+-org.eclipse.jdt.core.compiler.source=1.8
++org.eclipse.jdt.core.compiler.source=1.7
+diff --git a/thread_bouncing/thrdbouncing/pom.xml b/thread_bouncing/thrdbouncing/pom.xml
+index 40d3696..e086261 100644
+--- a/thread_bouncing/thrdbouncing/pom.xml
++++ b/thread_bouncing/thrdbouncing/pom.xml
+@@ -166,8 +166,31 @@
+ 			<version>1.1.1</version>
+ 		</dependency>
+ 				
+-        	
++    <dependency>
++      <groupId>org.apache.geronimo.specs</groupId>
++      <artifactId>geronimo-jms_1.1_spec</artifactId>
++      <version>1.1</version>
++    </dependency>
++    
++    <dependency>
++      <groupId>org.apache.qpid</groupId>
++      <artifactId>qpid-jms-client</artifactId>
++      <version>0.3.0</version>
++    </dependency>
+     
++	<dependency>
++		<groupId>org.codehaus.jackson</groupId>
++		<artifactId>jackson-mapper-asl</artifactId>
++		<version>1.9.13</version>
++	</dependency>
++    
++	<dependency>
++		<groupId>org.codehaus.jackson</groupId>
++		<artifactId>jackson-core-asl</artifactId>
++		<version>1.1.0</version>
++	</dependency>
++  		
++      
+   </dependencies>
+ </project>
+ 
+diff --git a/thread_bouncing/thrdbouncing/src/main/java/com/alprojects/Algos/Algo.java b/thread_bouncing/thrdbouncing/src/main/java/com/alprojects/Algos/Algo.java
+index 00372dd..a62df12 100644
+--- a/thread_bouncing/thrdbouncing/src/main/java/com/alprojects/Algos/Algo.java
++++ b/thread_bouncing/thrdbouncing/src/main/java/com/alprojects/Algos/Algo.java
+@@ -31,7 +31,7 @@ public class Algo {
+ 			hm.put(str.charAt(i), i);
+ 
+ 		TreeMap<Integer, Character> tr = new TreeMap<Integer, Character>();
+-
++		
+ 		/*
+ 		Set<Character> hks = hm.keySet();
+ 		Set<Entry<Character,Integer>> hes = hm.entrySet();
+@@ -535,6 +535,32 @@ public class Algo {
+ 		
+ 		return;
+ 	}
++	
++	public static List<Integer> findIntersection( List<Integer> l1, List<Integer> l2 ) {
++		ArrayList<Integer> rv = new ArrayList<Integer>();
++		rv.addAll(l1);
++		rv.retainAll(l2);
++		return rv;
++	}
++	
++	public static void testIntersection() {
++		ArrayList<Integer> l1 = new ArrayList<Integer>();
++		ArrayList<Integer> l2 = new ArrayList<Integer>();
++		
++		l1.add(1);
++		l1.add(2);
++		l1.add(3);
++		l1.add(4);
++		l1.add(5);
++		
++		l2.add(3);
++		l2.add(5);
++		l2.add(7);
++		
++		List<Integer> rv = findIntersection( l1, l2 );
++		
++		return;
++	}
+ 
+ 	public static void performTests() {
+ 		
+@@ -570,7 +596,8 @@ public class Algo {
+ 		// testImmutable();
+ 		// testImmutableInt();
+ 		// String rest = testKickoffRepeatingChars_noiterators( "1234566736" );
+-		testList();
++		// testList();
++		testIntersection();
+ 		
+ 		return;
+ 
+diff --git a/thread_bouncing/thrdbouncing/src/main/java/com/alprojects/hiber/BusPark.java b/thread_bouncing/thrdbouncing/src/main/java/com/alprojects/hiber/BusPark.java
+index 845b7c1..27077bd 100644
+--- a/thread_bouncing/thrdbouncing/src/main/java/com/alprojects/hiber/BusPark.java
++++ b/thread_bouncing/thrdbouncing/src/main/java/com/alprojects/hiber/BusPark.java
+@@ -1,10 +1,13 @@
+ package com.alprojects.hiber;
+ 
+ import java.util.HashSet;
+-
+ import java.util.Iterator;
+ import java.util.Set;
+ 
++import javax.persistence.EntityManager;
++import javax.persistence.EntityManagerFactory;
++import javax.persistence.Persistence;
++
+ import org.hibernate.Session;
+ import org.hibernate.SessionFactory;
+ import org.hibernate.Transaction;
+@@ -100,7 +103,17 @@ public class BusPark
+ 		// Session session = this.getServiceFactory().openSession();
+ 		// Session session = getSession();
+ 		Session session = SessionFactoryHolder.getFactory().openSession();
++		
+ 
++		/*
++		EntityManagerFactory entityManagerFactory 
++			= Persistence.createEntityManagerFactory("");
++		
++		EntityManager em = entityManagerFactory.createEntityManager();
++		*/
++
++
++		
+ 		Transaction trans = null;
+ 
+ 		try {
+diff --git a/thread_bouncing/thrdbouncing/src/main/java/com/alprojects/jms_tests/Dispatcher.java b/thread_bouncing/thrdbouncing/src/main/java/com/alprojects/jms_tests/Dispatcher.java
+index 921d749..ccff72f 100644
+--- a/thread_bouncing/thrdbouncing/src/main/java/com/alprojects/jms_tests/Dispatcher.java
++++ b/thread_bouncing/thrdbouncing/src/main/java/com/alprojects/jms_tests/Dispatcher.java
+@@ -1,6 +1,5 @@
+ package com.alprojects.jms_tests;
+ 
+-import javax.jms.JMSException;
+ 
+ public class Dispatcher {
+ 	public static void main(String[] args) {
+@@ -10,16 +9,17 @@ public class Dispatcher {
+ 			for (String arg : args) {
+ 				if ("-listener".equalsIgnoreCase(arg)) {
+ 					Listener.main(args);
++					return;
+ 				} else if ("-publisher".equalsIgnoreCase(arg)) {
+ 					Publisher.main(args);
+-				} else {
+-					System.out
+-							.println("neither publisher nor listener was recognized");
++					return;
+ 				}
+ 			}
+ 		} catch (Exception e) {
+ 			// TODO Auto-generated catch block
+ 			e.printStackTrace();
+ 		}
++		
++		System.out.println("neither publisher nor listener was recognized");
+ 	}
+ }
+diff --git a/thread_bouncing/thrdbouncing/src/main/java/com/alprojects/jms_tests/Listener.java b/thread_bouncing/thrdbouncing/src/main/java/com/alprojects/jms_tests/Listener.java
+index 9d15c6a..396bd50 100644
+--- a/thread_bouncing/thrdbouncing/src/main/java/com/alprojects/jms_tests/Listener.java
++++ b/thread_bouncing/thrdbouncing/src/main/java/com/alprojects/jms_tests/Listener.java
+@@ -19,7 +19,7 @@ package com.alprojects.jms_tests;
+ import org.apache.qpid.jms.*;
+ import javax.jms.*;
+ 
+-class Listener {
++public class Listener {
+ 
+     public static void main(String[] args) throws JMSException {
+ 
+diff --git a/thread_bouncing/thrdbouncing/src/main/java/com/alprojects/jms_tests/Publisher.java b/thread_bouncing/thrdbouncing/src/main/java/com/alprojects/jms_tests/Publisher.java
+index fb64cfd..65a8676 100644
+--- a/thread_bouncing/thrdbouncing/src/main/java/com/alprojects/jms_tests/Publisher.java
++++ b/thread_bouncing/thrdbouncing/src/main/java/com/alprojects/jms_tests/Publisher.java
+@@ -20,7 +20,7 @@ package com.alprojects.jms_tests;
+ import org.apache.qpid.jms.*;
+ import javax.jms.*;
+ 
+-class Publisher {
++public class Publisher {
+ 
+     public static void main(String[] args) throws Exception {
+ 
+diff --git a/thread_bouncing/thrdbouncing/src/main/java/com/alprojects/thrdbouncing/App.java b/thread_bouncing/thrdbouncing/src/main/java/com/alprojects/thrdbouncing/App.java
+index 7f23d06..1e4e157 100644
+--- a/thread_bouncing/thrdbouncing/src/main/java/com/alprojects/thrdbouncing/App.java
++++ b/thread_bouncing/thrdbouncing/src/main/java/com/alprojects/thrdbouncing/App.java
+@@ -1,16 +1,15 @@
+ package com.alprojects.thrdbouncing;
+ 
+ import java.io.FileNotFoundException;
++import java.util.concurrent.locks.ReentrantLock;
++import java.util.concurrent.locks.ReentrantReadWriteLock;
+ 
+ import org.dom4j.DocumentException;
+ 
+-import com.alprojects.Algos.Algo;
+-import com.alprojects.exceptions.TestExceptions;
+-import com.alprojects.guicetest.GuiceTest;
+ import com.alprojects.hiber.SessionFactoryHolder;
+ import com.alprojects.hiber.TestPersist;
+ import com.alprojects.inheritance.AccessClass;
+-import com.alprojects.jdbc.JdbcTests;
++import com.alprojects.test_json.TestJsonSerialize;
+ import com.alprojects.xml_tests.pomxml_parser;
+ // import com.alprojects.guicetest.CopyModule;
+ // import com.alprojects.guicetest.ICopier;
+@@ -160,6 +159,63 @@ public class App
+ 		}
+ 	}
+ 	
++	public static void testException() {
++		try {
++			try {
++				throw new IllegalStateException();
++			} finally {
++				throw new RuntimeException();
++			}
++		} catch (IllegalStateException ex) {
++			System.out.println("1");
++		} catch (RuntimeException e) {
++			System.out.println("2");
++		} catch (Exception ee) {
++			System.out.println("3");
++		}
++	}
++	
++	public static void testError()
++	{
++		try
++		{
++			try
++			{
++				throw new Exception("!!!");
++			}
++			catch (Exception e)
++			{
++				System.out.println( "catch 1" );
++				return;
++			}
++			finally 
++			{
++				System.out.println( "finally 1" );
++			}
++		}
++		catch ( Exception e )
++		{
++			System.out.println( "catch 2" );
++		}
++		finally 
++		{
++			System.out.println( "finally 2" );
++		}
++		
++		// System.out.println( "returning" );
++	}
++	
++	static public void testLock()
++	{
++		// ReentrantLock rl = new ReentrantLock();
++		// rl.lock();
++		// rl.unlock();
++		
++		// ReentrantReadWriteLock rrwl = new ReentrantReadWriteLock();
++		// rrwl.readLock().lock();
++		// rrwl.writeLock().lock();
++	}
++	
+ 	// algorighms
+ 	// http://www.youtube.com/watch?v=f5OD9CKrZEw
+ 	
+@@ -180,7 +236,13 @@ public class App
+     		// Algo.performTests();
+     		// new RuntimeException();
+     		
+-    		JdbcTests.performTests();
++    		// JdbcTests.performTests();
++    		// Dispatcher.main(args);
++    		// Algo.performTests();
++    		// testException();
++    		TestJsonSerialize.testJsonSerialize();
++    		
++    		// testError();
+ 		}
+     	finally
+     	{

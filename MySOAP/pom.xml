@@ -56,6 +56,13 @@
 			<artifactId>spring-tx</artifactId>
 			<version>LATEST</version> <!-- 4.2.3.RELEASE -->
 		</dependency>
+		
+		<dependency>
+			<groupId>javax.ws.rs</groupId>
+			<artifactId>jsr311-api</artifactId>
+			<version>LATEST</version>
+		</dependency>
+		
 	  
 	</dependencies>  
   

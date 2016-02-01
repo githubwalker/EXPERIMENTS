@@ -26,7 +26,14 @@ public class SessionServlet extends HttpServlet {
          }
          session.setAttribute("accessCount", accessCount);
       }
-
+      
+      // this.getServletContext().log(msg);
+      // this.getServletConfig()
+      // request.getParameter(name)
+      // this.getServletContext().getResourceAsStream(path)
+      // request.getParameter(name)
+      // request.getRequestDispatcher(path)
+      
       // Write the response message, in an HTML page
       try {
          out.println("<!DOCTYPE html>");

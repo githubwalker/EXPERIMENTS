@@ -1,16 +1,15 @@
 package com.alprojects.thrdbouncing;
 
 import java.io.FileNotFoundException;
+import java.util.concurrent.locks.ReentrantLock;
+import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 import org.dom4j.DocumentException;
 
-import com.alprojects.Algos.Algo;
-import com.alprojects.exceptions.TestExceptions;
-import com.alprojects.guicetest.GuiceTest;
 import com.alprojects.hiber.SessionFactoryHolder;
 import com.alprojects.hiber.TestPersist;
 import com.alprojects.inheritance.AccessClass;
-import com.alprojects.jdbc.JdbcTests;
+import com.alprojects.test_json.TestJsonSerialize;
 import com.alprojects.xml_tests.pomxml_parser;
 // import com.alprojects.guicetest.CopyModule;
 // import com.alprojects.guicetest.ICopier;
@@ -160,6 +159,63 @@ public class App
 		}
 	}
 	
+	public static void testException() {
+		try {
+			try {
+				throw new IllegalStateException();
+			} finally {
+				throw new RuntimeException();
+			}
+		} catch (IllegalStateException ex) {
+			System.out.println("1");
+		} catch (RuntimeException e) {
+			System.out.println("2");
+		} catch (Exception ee) {
+			System.out.println("3");
+		}
+	}
+	
+	public static void testError()
+	{
+		try
+		{
+			try
+			{
+				throw new Exception("!!!");
+			}
+			catch (Exception e)
+			{
+				System.out.println( "catch 1" );
+				return;
+			}
+			finally 
+			{
+				System.out.println( "finally 1" );
+			}
+		}
+		catch ( Exception e )
+		{
+			System.out.println( "catch 2" );
+		}
+		finally 
+		{
+			System.out.println( "finally 2" );
+		}
+		
+		// System.out.println( "returning" );
+	}
+	
+	static public void testLock()
+	{
+		// ReentrantLock rl = new ReentrantLock();
+		// rl.lock();
+		// rl.unlock();
+		
+		// ReentrantReadWriteLock rrwl = new ReentrantReadWriteLock();
+		// rrwl.readLock().lock();
+		// rrwl.writeLock().lock();
+	}
+	
 	// algorighms
 	// http://www.youtube.com/watch?v=f5OD9CKrZEw
 	
@@ -180,7 +236,13 @@ public class App
     		// Algo.performTests();
     		// new RuntimeException();
     		
-    		JdbcTests.performTests();
+    		// JdbcTests.performTests();
+    		// Dispatcher.main(args);
+    		// Algo.performTests();
+    		// testException();
+    		TestJsonSerialize.testJsonSerialize();
+    		
+    		// testError();
 		}
     	finally
     	{
