@@ -23,19 +23,15 @@ import org.springframework.web.servlet.ModelAndView;
 // http://fruzenshtein.com/spring-mvc-resources/
 
 @Controller
-@RequestMapping("/")
+@RequestMapping
 public class MvcController {
-    public MvcController()
-    {
 
-    }
-
-    @RequestMapping("index")
+    @RequestMapping("/index")
     public String mainPage(ModelAndView model) {
         return "idx";
     }
 
-    @RequestMapping("login")
+    @RequestMapping("/login")
     public String loginPage(ModelAndView model) {
         return "lgn";
     }

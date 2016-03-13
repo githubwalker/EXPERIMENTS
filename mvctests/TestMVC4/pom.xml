@@ -15,6 +15,7 @@
         <spring.mvc>4.2.5.RELEASE</spring.mvc>
         <spring.securiry>4.0.4.RELEASE</spring.securiry>
         <jstl.version>1.2</jstl.version>
+        <javax.servlet>LATEST</javax.servlet>
     </properties>
 
 
@@ -65,9 +66,19 @@
             <version>${jstl.version}</version>
         </dependency>
 
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>${javax.servlet}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.5.0</version>
+        </dependency>
 
     </dependencies>
-
 
 
 </project>
