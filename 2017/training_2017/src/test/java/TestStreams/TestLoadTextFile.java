@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 /**
  * Created by andrew on 21.05.2017.
  */
-public class LoadTextFile
+public class TestLoadTextFile
 {
     private static File _tempFile;
 
