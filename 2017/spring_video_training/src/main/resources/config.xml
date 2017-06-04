@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:c="http://www.springframework.org/schema/c"
+
+       xsi:schemaLocation=
+           "http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.2.xsd
+"
+>
+
+    <bean id="client" class="com.alprojects.Client" p:clientName="${name}" p:clientId="${id}" p:greeting="${greeting}">
+        <!--
+        <property name="clientId" value="${id}"/>
+        <property name="clientName" value="${name}"/>
+        <property name="greeting" value="${greeting}" />
+        -->
+    </bean>
+
+    <bean id="consoleEventLogger" class="com.alprojects.ConsoleEventLogger"/>
+
+    <bean id="fileEventLogger" class="com.alprojects.FileEventLogger" init-method="init">
+        <constructor-arg value="C:\\LOG\\1.txt"/>
+    </bean>
+
+    <bean id="cachedFileEventLogger" class="com.alprojects.CachedFileEventLogger" parent="fileEventLogger" destroy-method="destroySpringBean">
+    </bean>
+
+    <bean id="combinedEvenLogger" class="com.alprojects.CombinedEventLogger">
+
+        <constructor-arg>
+            <list>
+                <ref bean="cachedFileEventLogger"/>
+                <ref bean="consoleEventLogger"/>
+            </list>
+        </constructor-arg>
+    </bean>
+
+    <util:map id="loggersMap" >
+        <entry key="ERROR" value-ref="combinedEvenLogger"/>
+        <entry key="INFO" value-ref="consoleEventLogger"/>
+    </util:map>
+
+    <bean id="app" class="com.alprojects.App">
+        <constructor-arg index="0" ref="client"/>
+        <constructor-arg index="1" ref="loggersMap"/>
+        <constructor-arg index="2" ref="consoleEventLogger"/>
+    </bean>
+
+    <bean id="dateFormat" class="java.text.DateFormat" factory-method="getDateTimeInstance" />
+
+    <bean id="event" class="com.alprojects.Event" scope="prototype">
+        <constructor-arg>
+            <bean class="java.util.Date"/>
+        </constructor-arg>
+
+        <constructor-arg ref="dateFormat"/>
+    </bean>
+
+    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <value>classpath:client.properties</value>
+            </list>
+        </property>
+        
+        <property name="ignoreResourceNotFound" value="true" />
+        
+        <property name="systemPropertiesModeName" value="SYSTEM_PROPERTIES_MODE_OVERRIDE" />
+    </bean>
+
+</beans>
