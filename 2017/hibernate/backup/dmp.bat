@@ -1,0 +1,1 @@
+mysqldump -uroot -p1 words > dump.sql

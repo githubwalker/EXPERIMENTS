@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="hibernate.cfg.xml/Hibernate">
+  <database-model serializer="dbm" rdbms="MYSQL" format-version="4.2">
+    <root id="1"/>
+    <schema id="2" parent="1" name="words">
+      <Current>1</Current>
+      <Visible>1</Visible>
+    </schema>
+    <schema id="3" parent="1" name="bus_park"/>
+    <schema id="4" parent="1" name="fitness_tracker"/>
+    <schema id="5" parent="1" name="information_schema"/>
+    <schema id="6" parent="1" name="mysql"/>
+    <schema id="7" parent="1" name="new_schema"/>
+    <schema id="8" parent="1" name="performance_schema"/>
+    <schema id="9" parent="1" name="sakila"/>
+    <schema id="10" parent="1" name="test"/>
+    <schema id="11" parent="1" name="university"/>
+    <schema id="12" parent="1" name="world"/>
+    <table id="13" parent="2" name="__migrationhistory"/>
+    <table id="14" parent="2" name="langs"/>
+    <table id="15" parent="2" name="translations"/>
+    <table id="16" parent="2" name="words"/>
+    <column id="17" parent="13" name="MigrationId">
+      <Position>1</Position>
+      <DataType>varchar(150)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="18" parent="13" name="ContextKey">
+      <Position>2</Position>
+      <DataType>varchar(300)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="19" parent="13" name="Model">
+      <Position>3</Position>
+      <DataType>longblob|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="20" parent="13" name="ProductVersion">
+      <Position>4</Position>
+      <DataType>varchar(32)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="21" parent="13" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>MigrationId</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="22" parent="14" name="Id">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="23" parent="14" name="Name">
+      <Position>2</Position>
+      <DataType>longtext|0</DataType>
+    </column>
+    <key id="24" parent="14" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>Id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="25" parent="15" name="Id">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="26" parent="15" name="Word1Id">
+      <Position>2</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="27" parent="15" name="Word2Id">
+      <Position>3</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="28" parent="15" name="IX_Word1Id">
+      <ColNames>Word1Id</ColNames>
+    </index>
+    <index id="29" parent="15" name="IX_Word2Id">
+      <ColNames>Word2Id</ColNames>
+    </index>
+    <key id="30" parent="15" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>Id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="31" parent="15" name="FK_Translations_Words_Word1Id">
+      <ColNames>Word1Id</ColNames>
+      <RefSchemaName>words</RefSchemaName>
+      <RefTableName>words</RefTableName>
+      <RefColNames>Id</RefColNames>
+      <OnUpdate>cascade</OnUpdate>
+      <OnDelete>cascade</OnDelete>
+    </foreign-key>
+    <foreign-key id="32" parent="15" name="FK_Translations_Words_Word2Id">
+      <ColNames>Word2Id</ColNames>
+      <RefSchemaName>words</RefSchemaName>
+      <RefTableName>words</RefTableName>
+      <RefColNames>Id</RefColNames>
+      <OnUpdate>cascade</OnUpdate>
+      <OnDelete>cascade</OnDelete>
+    </foreign-key>
+    <column id="33" parent="16" name="Id">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="34" parent="16" name="Text">
+      <Position>2</Position>
+      <DataType>longtext|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="35" parent="16" name="LangId">
+      <Position>3</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="36" parent="16" name="IX_LangId">
+      <ColNames>LangId</ColNames>
+    </index>
+    <key id="37" parent="16" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>Id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="38" parent="16" name="FK_Words_Langs_LangId">
+      <ColNames>LangId</ColNames>
+      <RefSchemaName>words</RefSchemaName>
+      <RefTableName>langs</RefTableName>
+      <RefColNames>Id</RefColNames>
+      <OnUpdate>cascade</OnUpdate>
+      <OnDelete>cascade</OnDelete>
+    </foreign-key>
+  </database-model>
+</dataSource>
