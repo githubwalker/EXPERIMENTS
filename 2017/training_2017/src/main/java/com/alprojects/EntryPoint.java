@@ -1,26 +1,19 @@
 package com.alprojects;
 
-import com.alprojects.TestIterable.MySingle;
-import com.alprojects.TestIterable.PlayWithIterable;
-import com.alprojects.code.j8features.MyInterface;
-import com.alprojects.code.j8features.TestFooBarSuper;
-import com.alprojects.code.j8features.TestStreamApi;
+import com.alprojects.TestHashmap.TestHashmap;
 import com.alprojects.producers_consumers.Message;
 import com.alprojects.producers_consumers.ProducersConsumers;
 import com.alprojects.testcloneable.TestUser;
-import com.alprojects.threads.TestDownload;
-import com.alprojects.threads.TestExecutor;
-import com.alprojects.threads.TestFuture;
+import com.alprojects.workers_n_tasks.LoadTestWorkersThreadPool;
+import com.alprojects.workers_n_tasks.WorkersThreadPool;
 
-import java.io.IOException;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.ListIterator;
 import java.util.concurrent.ConcurrentLinkedQueue;
-import java.util.concurrent.ConcurrentSkipListSet;
-import java.util.concurrent.ExecutionException;
 import java.util.concurrent.atomic.AtomicInteger;
-import java.util.stream.IntStream;
 
 /**
  * Created by andrew on 07.05.2017.
@@ -175,14 +168,44 @@ public class EntryPoint
         Number nm = acceptNumbers(nums);
     }
 
+    public static void TestListiterator()
+    {
+        LinkedList<Integer> ll = new LinkedList<Integer>();
+        ll.add(1);
+        ll.add(2);
+        ll.add(3);
+        ll.add(4);
+
+        ListIterator<Integer> it = ll.listIterator(4);
+        while(it.hasPrevious())
+        {
+            if (it.previous() > 2)
+                System.out.println( String.format("Value %d greater than 2", it.previous()) );
+        }
+
+        return;
+    }
+
     public static void main(String[] args) throws Exception
     {
+        LoadTestWorkersThreadPool.doTest();
+        // TestHashmap.DoTests();
+        // TestCollectionCloning.TestClone();
+        // TestListiterator();
+
+        // thread_bouncing_test.ThreadBouncingTest();
+        // TestSingleton.DoTest();
+        // TestSerialize.DoTest();
+        return;
+
+        /*
         testCov();
         testClone();
         clTest();
         foo2();
         String str = "";
         str.hashCode();
+        */
 
         /*
         int rv = foo();
@@ -192,7 +215,7 @@ public class EntryPoint
         */
 
         // showClassPath();
-        return;
+        // return;
 
         // TestProducersConsumers();
         // return;
