@@ -1,11 +1,9 @@
 package com.alprojects;
 
-import com.alprojects.TestHashmap.TestHashmap;
+import com.alprojects.TestJdbc.TestJdbc;
 import com.alprojects.producers_consumers.Message;
 import com.alprojects.producers_consumers.ProducersConsumers;
 import com.alprojects.testcloneable.TestUser;
-import com.alprojects.workers_n_tasks.LoadTestWorkersThreadPool;
-import com.alprojects.workers_n_tasks.WorkersThreadPool;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
@@ -188,7 +186,11 @@ public class EntryPoint
 
     public static void main(String[] args) throws Exception
     {
-        LoadTestWorkersThreadPool.doTest();
+        TestJdbc.testItself();
+        TestJdbc.testInsert();
+        // TestSerializeCollection.TestItself();
+        // TestSerializeCollection.TestClone();
+        // LoadTestWorkersThreadPool.doTest();
         // TestHashmap.DoTests();
         // TestCollectionCloning.TestClone();
         // TestListiterator();
